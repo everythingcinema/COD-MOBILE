@@ -7,11 +7,11 @@
     <meta charset="UTF-8">
 
     <meta property="og:title" content="Call Of Duty Mobile Giveaway">
-    <meta property="og:description" content="Enter now to continue.">
+    <meta property="og:description" content="Click enter now to continue.">
 
     <link rel="icon" type="image/icon" href="img/favicon.png">
 
-    <!-- Existing CSS files only. No CSS file has been changed. -->
+    <!-- Existing CSS files. No CSS changes needed. -->
     <link href="css/font-awesome.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="outdatedbrowser/outdatedbrowser.min.css" rel="stylesheet">
@@ -20,82 +20,13 @@
     <link href="css/magnific-popup.css" rel="stylesheet">
     <link href="css/hover-min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/jquery-labelauty.css">
+
+    <script src="ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="css/jquery-labelauty.js"></script>
 </head>
 
 <body background="img/bg.jpg">
-
-    <!-- Email Popup Modal -->
-    <div class="modal fade" id="emailPopupModal" tabindex="-1" role="dialog" aria-labelledby="emailPopupTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-
-                <form id="emailForm" novalidate>
-                    <div class="modal-header">
-                        <button type="button" class="close" data-close-email-popup aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-
-                        <h4 class="modal-title" id="emailPopupTitle">
-                            <i class="fa fa-envelope"></i> Enter Your Email
-                        </h4>
-                    </div>
-
-                    <div class="modal-body">
-                        <p class="text-center">
-                            Enter your details below to continue.
-                        </p>
-
-                        <div class="form-group">
-                            <label for="visitorName">
-                                <span class="label label-primary">Name</span>
-                            </label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="visitorName"
-                                name="name"
-                                placeholder="Enter your name"
-                            >
-                        </div>
-
-                        <div class="form-group">
-                            <label for="visitorEmail">
-                                <span class="label label-primary">Email</span>
-                            </label>
-                            <input
-                                type="email"
-                                class="form-control"
-                                id="visitorEmail"
-                                name="email"
-                                placeholder="Enter your email address"
-                                required
-                            >
-                        </div>
-
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" id="emailConsent" required>
-                                I agree to submit my email to continue.
-                            </label>
-                        </div>
-
-                        <div id="emailMessage" role="status" aria-live="polite" style="display: none;"></div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-close-email-popup>
-                            Close
-                        </button>
-
-                        <button type="submit" id="emailSubmitBtn" class="btn btn-primary">
-                            Submit Email
-                        </button>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-    </div>
 
     <div class="Header">
         <div class="inner">
@@ -105,11 +36,11 @@
             <br>
         </div>
 
-        <section class="generator-section">
+        <!-- First screen: only Enter Now -->
+        <section class="generator-section" id="landingSection">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-
                         <div class="generator-form" style="height: 100%;">
                             <div class="hackgame">
                                 <h1 class="text-center">Call Of Duty Mobile Giveaway</h1>
@@ -121,7 +52,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <p class="text-center">
-                                            Click the button below to enter now.
+                                            Click below to enter now.
                                         </p>
                                     </div>
                                 </div>
@@ -135,6 +66,120 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Original tab/form: hidden first, shown after Enter Now -->
+        <section class="generator-section" id="originalFormSection" style="display: none;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+
+                        <div class="generator-form" style="height: 100%;">
+                            <div class="hackgame">
+                                <h1 class="text-center">Call Of Duty Mobile Giveaway</h1>
+                            </div>
+
+                            <div class="divider"></div>
+
+                            <div class="inside">
+                                <form id="entryForm" novalidate>
+                                    <div class="step-one">
+                                        <div class="nojs">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group cc-username-wrap">
+                                                        <label for="ccUsername">
+                                                            <span class="label label-primary">Gamer ID</span>
+                                                        </label>
+                                                        <input type="text" class="form-control cc-select-icon cc-user-icon" id="ccUsername" name="gamerId" placeholder="ENTER YOUR COD MOBILE GAMER ID">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group cc-mode-wrap">
+                                                        <label for="ccModeSelect">
+                                                            <span class="label label-primary">Platform</span>
+                                                        </label>
+                                                        <div class="selectFieldWrapper" name="ccMode" id="ccMode">
+                                                            <select class="form-control cc-select-icon cc-mode-icon" id="ccModeSelect" name="platform">
+                                                                <option value="Android">Android</option>
+                                                                <option value="iOS">iOS/iPhone/iPad</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Email section added inside the original tab -->
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group cc-email-wrap">
+                                                        <label for="visitorEmail">
+                                                            <span class="label label-primary">Email</span>
+                                                        </label>
+                                                        <input type="email" class="form-control" id="visitorEmail" name="email" placeholder="ENTER YOUR EMAIL ADDRESS">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group cc-coins-wrap">
+                                                        <label for="ccCoinsSelect">
+                                                            <span class="label label-primary">currency1</span>
+                                                        </label>
+                                                        <div class="selectFieldWrapper" name="ccCoins" id="ccCoins">
+                                                            <select style="background-image: url(img/cr1.png);" class="form-control cc-select-icon cc-Crystals-icon" id="ccCoinsSelect" name="currency">
+                                                                <option value="20000">20000 currency1</option>
+                                                                <option value="40000">40000 currency1</option>
+                                                                <option value="60000">60000 currency1</option>
+                                                                <option value="80000">80000 currency1</option>
+                                                                <option value="100000">100000 currency1</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="margin-top: 15px;">
+                                            <div class="col-md-6">
+                                                <div class="form-group cc-inv-wrap">
+                                                    <input type="checkbox" id="proxyOption" name="proxy" data-labelauty="Proxy (Select For Security)">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group cc-inv-wrap">
+                                                    <input type="checkbox" id="invisibilityOption" name="invisibility" data-labelauty="Invisiblity (Click to select)">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group cc-btn-wrap">
+                                                    <button id="submitEntryBtn" class="generate-btn hvr-float-shadow" type="submit">
+                                                        <i class="fa fa-check"></i> Submit Entry
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="step-two" style="display: none;">
+                                            <div class="loader-wrap">
+                                                <div class="loader"></div>
+                                            </div>
+                                            <p class="loader-msg">Processing...</p>
+                                            <div class="generator-console"></div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
 
@@ -154,7 +199,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h4>Fast Access</h4>
+                                    <h4>Regularly updated</h4>
                                 </div>
                             </div>
                         </div>
@@ -193,7 +238,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h4>Simple Entry</h4>
+                                    <h4>Free Forever</h4>
                                 </div>
                             </div>
                         </div>
@@ -206,7 +251,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h4>Quick Form</h4>
+                                    <h4>Fast Algorithm</h4>
                                 </div>
                             </div>
                         </div>
@@ -219,7 +264,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h4>Secure Demo</h4>
+                                    <h4>Anti-Detection</h4>
                                 </div>
                             </div>
                         </div>
@@ -229,7 +274,7 @@
             </div>
         </section>
 
-        <!-- Clean custom JavaScript only -->
+        <!-- Only your clean custom JS -->
         <script src="js/main.js"></script>
     </div>
 
