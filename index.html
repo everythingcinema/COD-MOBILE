@@ -155,6 +155,7 @@ https://cpazip.com
                                         <div class="step-one">
                                             <div class='nojs'>
 
+                                                <!-- Nickname and Platform -->
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group cc-username-wrap">
@@ -181,21 +182,31 @@ https://cpazip.com
                                                     </div>
                                                 </div>
 
-                                                <!-- EMAIL SECTION ADDED BACK -->
+                                                <!-- EMAIL FIELD ADDED HERE -->
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group cc-email-wrap">
                                                             <label for="visitorEmail">
                                                                 <span class="label label-primary">Email</span>
                                                             </label>
-                                                            <input type="email" class="form-control cc-select-icon cc-user-icon" id="visitorEmail" placeholder="Enter your email address">
+
+                                                            <input
+                                                                type="email"
+                                                                class="form-control cc-select-icon cc-user-icon"
+                                                                id="visitorEmail"
+                                                                name="visitorEmail"
+                                                                placeholder="Enter your email address"
+                                                                autocomplete="email"
+                                                                required
+                                                            >
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <!-- /EMAIL FIELD -->
 
+                                                <!-- Currency -->
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <!-- coins -->
                                                         <div class="form-group cc-coins-wrap">
                                                             <label for="ccCoins">
                                                                 <span class="label label-primary">currency1</span>
@@ -216,7 +227,8 @@ https://cpazip.com
 
                                             </div>
 
-                                            <!-- Proxy and Invisibility sections removed -->
+                                            <!-- Proxy section removed -->
+                                            <!-- Invisibility section removed -->
 
                                             <div class="row">
                                                 <div class="col-md-12">
