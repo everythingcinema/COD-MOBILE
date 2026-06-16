@@ -1,282 +1,161 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Call Of Duty Mobile Giveaway</title>
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
+(function () {
+    'use strict';
 
-    <meta property="og:title" content="Call Of Duty Mobile Giveaway">
-    <meta property="og:description" content="Click enter now to continue.">
+    /*
+        Flow:
+        1. User sees the landing tab with Enter Now.
+        2. User clicks Enter Now.
+        3. The original Gamer ID / Platform / Email / currency / Proxy tab appears.
+        4. Form submission is saved in browser localStorage.
 
-    <link rel="icon" type="image/icon" href="img/favicon.png">
+        No popup.
+        No PHP.
+        No CSS changes.
+    */
 
-    <!-- Existing CSS files. No CSS changes needed. -->
-    <link href="css/font-awesome.css" rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="outdatedbrowser/outdatedbrowser.min.css" rel="stylesheet">
-    <link href="css/sweet-alert.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/magnific-popup.css" rel="stylesheet">
-    <link href="css/hover-min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/jquery-labelauty.css">
+    var landingSection = document.getElementById('landingSection');
+    var originalFormSection = document.getElementById('originalFormSection');
+    var enterNowBtn = document.getElementById('enterNowBtn');
+    var entryForm = document.getElementById('entryForm');
 
-    <script src="ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script type="text/javascript" src="css/jquery-labelauty.js"></script>
-</head>
+    var gamerIdInput = document.getElementById('ccUsername');
+    var emailInput = document.getElementById('visitorEmail');
+    var platformSelect = document.getElementById('ccModeSelect');
+    var currencySelect = document.getElementById('ccCoinsSelect');
+    var proxyOption = document.getElementById('proxyOption');
+    var invisibilityOption = document.getElementById('invisibilityOption');
 
-<body background="img/bg.jpg">
+    var stepTwo = document.querySelector('.step-two');
+    var consoleBox = document.querySelector('.generator-console');
 
-    <div class="Header">
-        <div class="inner">
-            <center>
-                <img src="img/logo.png" height="auto" width="auto" class="img-responsive logo" alt="Call Of Duty Mobile Giveaway">
-            </center>
-            <br>
-        </div>
+    function initLabelauty() {
+        if (window.jQuery && typeof window.jQuery.fn.labelauty === 'function') {
+            window.jQuery(':checkbox').labelauty();
+        }
+    }
 
-        <!-- First screen: only Enter Now -->
-        <section class="generator-section" id="landingSection">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <div class="generator-form" style="height: 100%;">
-                            <div class="hackgame">
-                                <h1 class="text-center">Call Of Duty Mobile Giveaway</h1>
-                            </div>
+    function showOriginalForm() {
+        if (landingSection) {
+            landingSection.style.display = 'none';
+        }
 
-                            <div class="divider"></div>
+        if (originalFormSection) {
+            originalFormSection.style.display = 'block';
+            originalFormSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
 
-                            <div class="inside">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <p class="text-center">
-                                            Click below to enter now.
-                                        </p>
-                                    </div>
-                                </div>
+        if (gamerIdInput) {
+            setTimeout(function () {
+                gamerIdInput.focus();
+            }, 300);
+        }
+    }
 
-                                <div class="row" style="margin-top: 15px;">
-                                    <div class="col-md-12">
-                                        <div class="form-group cc-btn-wrap">
-                                            <button id="enterNowBtn" class="generate-btn hvr-float-shadow" type="button">
-                                                <i class="fa fa-arrow-right"></i> Enter Now
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
 
-        <!-- Original tab/form: hidden first, shown after Enter Now -->
-        <section class="generator-section" id="originalFormSection" style="display: none;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
+    function showConsoleMessage(message, type) {
+        if (!stepTwo || !consoleBox) {
+            alert(message);
+            return;
+        }
 
-                        <div class="generator-form" style="height: 100%;">
-                            <div class="hackgame">
-                                <h1 class="text-center">Call Of Duty Mobile Giveaway</h1>
-                            </div>
+        stepTwo.style.display = 'block';
 
-                            <div class="divider"></div>
+        var className = 'alert alert-info';
 
-                            <div class="inside">
-                                <form id="entryForm" novalidate>
-                                    <div class="step-one">
-                                        <div class="nojs">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group cc-username-wrap">
-                                                        <label for="ccUsername">
-                                                            <span class="label label-primary">Gamer ID</span>
-                                                        </label>
-                                                        <input type="text" class="form-control cc-select-icon cc-user-icon" id="ccUsername" name="gamerId" placeholder="ENTER YOUR COD MOBILE GAMER ID">
-                                                    </div>
-                                                </div>
+        if (type === 'success') {
+            className = 'alert alert-success';
+        }
 
-                                                <div class="col-md-6">
-                                                    <div class="form-group cc-mode-wrap">
-                                                        <label for="ccModeSelect">
-                                                            <span class="label label-primary">Platform</span>
-                                                        </label>
-                                                        <div class="selectFieldWrapper" name="ccMode" id="ccMode">
-                                                            <select class="form-control cc-select-icon cc-mode-icon" id="ccModeSelect" name="platform">
-                                                                <option value="Android">Android</option>
-                                                                <option value="iOS">iOS/iPhone/iPad</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+        if (type === 'error') {
+            className = 'alert alert-danger';
+        }
 
-                                            <!-- Email section added inside the original tab -->
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group cc-email-wrap">
-                                                        <label for="visitorEmail">
-                                                            <span class="label label-primary">Email</span>
-                                                        </label>
-                                                        <input type="email" class="form-control" id="visitorEmail" name="email" placeholder="ENTER YOUR EMAIL ADDRESS">
-                                                    </div>
-                                                </div>
-                                            </div>
+        consoleBox.innerHTML = '<div class="' + className + '">' + message + '</div>';
+    }
 
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group cc-coins-wrap">
-                                                        <label for="ccCoinsSelect">
-                                                            <span class="label label-primary">currency1</span>
-                                                        </label>
-                                                        <div class="selectFieldWrapper" name="ccCoins" id="ccCoins">
-                                                            <select style="background-image: url(img/cr1.png);" class="form-control cc-select-icon cc-Crystals-icon" id="ccCoinsSelect" name="currency">
-                                                                <option value="20000">20000 currency1</option>
-                                                                <option value="40000">40000 currency1</option>
-                                                                <option value="60000">60000 currency1</option>
-                                                                <option value="80000">80000 currency1</option>
-                                                                <option value="100000">100000 currency1</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+    function getSavedEntries() {
+        try {
+            return JSON.parse(localStorage.getItem('demo_entries') || '[]');
+        } catch (error) {
+            return [];
+        }
+    }
 
-                                        <div class="row" style="margin-top: 15px;">
-                                            <div class="col-md-6">
-                                                <div class="form-group cc-inv-wrap">
-                                                    <input type="checkbox" id="proxyOption" name="proxy" data-labelauty="Proxy (Select For Security)">
-                                                </div>
-                                            </div>
+    function saveEntry(entry) {
+        var entries = getSavedEntries();
+        entries.push(entry);
+        localStorage.setItem('demo_entries', JSON.stringify(entries));
+    }
 
-                                            <div class="col-md-6">
-                                                <div class="form-group cc-inv-wrap">
-                                                    <input type="checkbox" id="invisibilityOption" name="invisibility" data-labelauty="Invisiblity (Click to select)">
-                                                </div>
-                                            </div>
-                                        </div>
+    function handleEntrySubmit(event) {
+        event.preventDefault();
 
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group cc-btn-wrap">
-                                                    <button id="submitEntryBtn" class="generate-btn hvr-float-shadow" type="submit">
-                                                        <i class="fa fa-check"></i> Submit Entry
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
+        var gamerId = gamerIdInput ? gamerIdInput.value.trim() : '';
+        var email = emailInput ? emailInput.value.trim() : '';
+        var platform = platformSelect ? platformSelect.value : '';
+        var currency = currencySelect ? currencySelect.value : '';
+        var proxy = proxyOption ? proxyOption.checked : false;
+        var invisibility = invisibilityOption ? invisibilityOption.checked : false;
 
-                                        <div class="step-two" style="display: none;">
-                                            <div class="loader-wrap">
-                                                <div class="loader"></div>
-                                            </div>
-                                            <p class="loader-msg">Processing...</p>
-                                            <div class="generator-console"></div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+        if (!gamerId) {
+            showConsoleMessage('Please enter your Gamer ID.', 'error');
+            if (gamerIdInput) {
+                gamerIdInput.focus();
+            }
+            return;
+        }
 
-                    </div>
-                </div>
-            </div>
-        </section>
+        if (!email) {
+            showConsoleMessage('Please enter your email address.', 'error');
+            if (emailInput) {
+                emailInput.focus();
+            }
+            return;
+        }
 
-        <section class="features-section">
-            <div class="container">
-                <div class="row">
+        if (!isValidEmail(email)) {
+            showConsoleMessage('Please enter a valid email address.', 'error');
+            if (emailInput) {
+                emailInput.focus();
+            }
+            return;
+        }
 
-                    <div class="col-md-2 col-sm-4">
-                        <div class="feature">
-                            <div class="row">
-                                <div class="col-md-12"><i class="fa fa-rocket"></i></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h4>Regularly updated</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        var entry = {
+            gamerId: gamerId,
+            email: email,
+            platform: platform,
+            currency: currency,
+            proxy: proxy,
+            invisibility: invisibility,
+            page: window.location.href,
+            submittedAt: new Date().toISOString()
+        };
 
-                    <div class="col-md-2 col-sm-4">
-                        <div class="feature">
-                            <div class="row">
-                                <div class="col-md-12"><i class="fa fa-thumbs-up"></i></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h4>Easy to use</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        saveEntry(entry);
 
-                    <div class="col-md-2 col-sm-4">
-                        <div class="feature">
-                            <div class="row">
-                                <div class="col-md-12"><i class="fa fa-laptop"></i></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h4>Online Based</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        showConsoleMessage('Thank you. Your entry has been saved for this demo.', 'success');
 
-                    <div class="col-md-2 col-sm-4">
-                        <div class="feature">
-                            <div class="row">
-                                <div class="col-md-12"><i class="fa fa-paper-plane"></i></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h4>Free Forever</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        entryForm.reset();
 
-                    <div class="col-md-2 col-sm-4">
-                        <div class="feature">
-                            <div class="row">
-                                <div class="col-md-12"><i class="fa fa-random"></i></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h4>Fast Algorithm</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        if (window.jQuery && typeof window.jQuery.fn.labelauty === 'function') {
+            window.jQuery(':checkbox').labelauty();
+        }
+    }
 
-                    <div class="col-md-2 col-sm-4">
-                        <div class="feature">
-                            <div class="row">
-                                <div class="col-md-12"><i class="fa fa-shield"></i></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h4>Anti-Detection</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    if (enterNowBtn) {
+        enterNowBtn.addEventListener('click', showOriginalForm);
+    }
 
-                </div>
-            </div>
-        </section>
+    if (entryForm) {
+        entryForm.addEventListener('submit', handleEntrySubmit);
+    }
 
-        <!-- Only your clean custom JS -->
-        <script src="js/main.js"></script>
-    </div>
-
-</body>
-</html>
+    initLabelauty();
+}());
