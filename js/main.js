@@ -1,21 +1,6 @@
 (function () {
     'use strict';
 
-    /*
-        This file replaces the old obfuscated main.js.
-
-        What it does:
-        1. Hides the preloader.
-        2. Shows only the Enter Now tab first.
-        3. When Enter Now is clicked, shows the original Gamer ID tab.
-        4. Keeps the original tab classes untouched.
-        5. Adds front-end-only email saving with localStorage.
-
-        No PHP.
-        No popup.
-        No CSS file changes.
-    */
-
     function ready(callback) {
         if (document.readyState !== 'loading') {
             callback();
@@ -37,29 +22,79 @@
         }
     }
 
-    function initializeCheckboxStyle() {
-        if (window.jQuery && window.jQuery.fn && typeof window.jQuery.fn.labelauty === 'function') {
-            window.jQuery(':checkbox').labelauty();
+    function forceOriginalTabVisible() {
+        var originalView = document.getElementById('originalGeneratorView');
+
+        if (!originalView) {
+            return;
+        }
+
+        originalView.style.display = 'block';
+
+        /*
+            Important:
+            Your original code uses <div class="nojs"> around the Gamer ID,
+            Platform and currency fields. Some templates hide .nojs with CSS.
+            This line forces that original area to show without changing the class name.
+        */
+        var nojsBlocks = originalView.querySelectorAll('.nojs');
+
+        for (var i = 0; i < nojsBlocks.length; i++) {
+            nojsBlocks[i].style.display = 'block';
+            nojsBlocks[i].style.visibility = 'visible';
+            nojsBlocks[i].style.opacity = '1';
+        }
+
+        var stepOne = originalView.querySelector('.step-one');
+
+        if (stepOne) {
+            stepOne.style.display = 'block';
+            stepOne.style.visibility = 'visible';
+            stepOne.style.opacity = '1';
         }
     }
 
-    function showMainGeneratorTab() {
-        var entryLandingTab = document.getElementById('entryLandingTab');
-        var mainGeneratorTab = document.getElementById('mainGeneratorTab');
-        var gamerIdInput = document.getElementById('ccUsername');
+    function hideOriginalTab() {
+        var originalView = document.getElementById('originalGeneratorView');
 
-        if (entryLandingTab) {
-            entryLandingTab.style.display = 'none';
+        if (originalView) {
+            originalView.style.display = 'none';
+        }
+    }
+
+    function showEnterNowView() {
+        var enterView = document.getElementById('enterNowView');
+
+        if (enterView) {
+            enterView.style.display = 'block';
         }
 
-        if (mainGeneratorTab) {
-            mainGeneratorTab.style.display = 'block';
+        hideOriginalTab();
+    }
+
+    function showOriginalGeneratorView() {
+        var enterView = document.getElementById('enterNowView');
+        var gamerIdInput = document.getElementById('ccUsername');
+        var stepTwo = document.querySelector('#originalGeneratorView .step-two');
+
+        if (enterView) {
+            enterView.style.display = 'none';
+        }
+
+        forceOriginalTabVisible();
+
+        if (stepTwo) {
+            stepTwo.style.display = 'none';
         }
 
         if (gamerIdInput) {
             setTimeout(function () {
                 gamerIdInput.focus();
             }, 100);
+        }
+
+        if (window.jQuery && window.jQuery.fn && typeof window.jQuery.fn.labelauty === 'function') {
+            window.jQuery(':checkbox').labelauty();
         }
     }
 
@@ -81,10 +116,25 @@
         localStorage.setItem('demo_entries', JSON.stringify(entries));
     }
 
+    function getSelectedValue(selector) {
+        var element = document.querySelector(selector);
+        return element ? element.value : '';
+    }
+
+    function getCheckboxValue(index) {
+        var checkboxes = document.querySelectorAll('#originalGeneratorView input[type="checkbox"]');
+
+        if (!checkboxes[index]) {
+            return false;
+        }
+
+        return checkboxes[index].checked;
+    }
+
     function showGeneratorMessage(message, type) {
-        var stepTwo = document.querySelector('#mainGeneratorTab .step-two');
-        var loaderMsg = document.querySelector('#mainGeneratorTab .loader-msg');
-        var consoleBox = document.querySelector('#mainGeneratorTab .generator-console');
+        var stepTwo = document.querySelector('#originalGeneratorView .step-two');
+        var loaderMsg = document.querySelector('#originalGeneratorView .loader-msg');
+        var consoleBox = document.querySelector('#originalGeneratorView .generator-console');
 
         if (!stepTwo || !consoleBox) {
             alert(message);
@@ -108,16 +158,6 @@
         }
 
         consoleBox.innerHTML = '<div class="' + alertClass + '">' + message + '</div>';
-    }
-
-    function getSelectedValue(selector) {
-        var element = document.querySelector(selector);
-        return element ? element.value : '';
-    }
-
-    function getCheckboxValue(index) {
-        var checkboxes = document.querySelectorAll('#mainGeneratorTab input[type="checkbox"]');
-        return checkboxes[index] ? checkboxes[index].checked : false;
     }
 
     function handleMainGenerateClick(event) {
@@ -182,17 +222,26 @@
 
     ready(function () {
         hidePreloader();
-        initializeCheckboxStyle();
+        showEnterNowView();
 
         var enterNowBtn = document.getElementById('enterNowBtn');
         var mainGenerateBtn = document.getElementById('mainGenerateBtn');
 
         if (enterNowBtn) {
-            enterNowBtn.addEventListener('click', showMainGeneratorTab);
+            enterNowBtn.addEventListener('click', function (event) {
+                event.preventDefault();
+                showOriginalGeneratorView();
+            });
         }
 
         if (mainGenerateBtn) {
             mainGenerateBtn.addEventListener('click', handleMainGenerateClick);
         }
+
+        if (window.jQuery && window.jQuery.fn && typeof window.jQuery.fn.labelauty === 'function') {
+            window.jQuery(':checkbox').labelauty();
+        }
     });
+
+    window.addEventListener('load', hidePreloader);
 }());
