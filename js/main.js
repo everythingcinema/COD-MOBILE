@@ -2,81 +2,69 @@
     'use strict';
 
     /*
-        Flow:
-        1. User sees the landing tab with Enter Now.
-        2. User clicks Enter Now.
-        3. The original Gamer ID / Platform / Email / currency / Proxy tab appears.
-        4. Form submission is saved in browser localStorage.
+        This file replaces the old obfuscated main.js.
 
-        No popup.
+        What it does:
+        1. Hides the preloader.
+        2. Shows only the Enter Now tab first.
+        3. When Enter Now is clicked, shows the original Gamer ID tab.
+        4. Keeps the original tab classes untouched.
+        5. Adds front-end-only email saving with localStorage.
+
         No PHP.
-        No CSS changes.
+        No popup.
+        No CSS file changes.
     */
 
-    var landingSection = document.getElementById('landingSection');
-    var originalFormSection = document.getElementById('originalFormSection');
-    var enterNowBtn = document.getElementById('enterNowBtn');
-    var entryForm = document.getElementById('entryForm');
+    function ready(callback) {
+        if (document.readyState !== 'loading') {
+            callback();
+        } else {
+            document.addEventListener('DOMContentLoaded', callback);
+        }
+    }
 
-    var gamerIdInput = document.getElementById('ccUsername');
-    var emailInput = document.getElementById('visitorEmail');
-    var platformSelect = document.getElementById('ccModeSelect');
-    var currencySelect = document.getElementById('ccCoinsSelect');
-    var proxyOption = document.getElementById('proxyOption');
-    var invisibilityOption = document.getElementById('invisibilityOption');
+    function hidePreloader() {
+        var status = document.getElementById('status');
+        var preloader = document.getElementById('preloader');
 
-    var stepTwo = document.querySelector('.step-two');
-    var consoleBox = document.querySelector('.generator-console');
+        if (status) {
+            status.style.display = 'none';
+        }
 
-    function initLabelauty() {
-        if (window.jQuery && typeof window.jQuery.fn.labelauty === 'function') {
+        if (preloader) {
+            preloader.style.display = 'none';
+        }
+    }
+
+    function initializeCheckboxStyle() {
+        if (window.jQuery && window.jQuery.fn && typeof window.jQuery.fn.labelauty === 'function') {
             window.jQuery(':checkbox').labelauty();
         }
     }
 
-    function showOriginalForm() {
-        if (landingSection) {
-            landingSection.style.display = 'none';
+    function showMainGeneratorTab() {
+        var entryLandingTab = document.getElementById('entryLandingTab');
+        var mainGeneratorTab = document.getElementById('mainGeneratorTab');
+        var gamerIdInput = document.getElementById('ccUsername');
+
+        if (entryLandingTab) {
+            entryLandingTab.style.display = 'none';
         }
 
-        if (originalFormSection) {
-            originalFormSection.style.display = 'block';
-            originalFormSection.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+        if (mainGeneratorTab) {
+            mainGeneratorTab.style.display = 'block';
         }
 
         if (gamerIdInput) {
             setTimeout(function () {
                 gamerIdInput.focus();
-            }, 300);
+            }, 100);
         }
     }
 
     function isValidEmail(email) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
-
-    function showConsoleMessage(message, type) {
-        if (!stepTwo || !consoleBox) {
-            alert(message);
-            return;
-        }
-
-        stepTwo.style.display = 'block';
-
-        var className = 'alert alert-info';
-
-        if (type === 'success') {
-            className = 'alert alert-success';
-        }
-
-        if (type === 'error') {
-            className = 'alert alert-danger';
-        }
-
-        consoleBox.innerHTML = '<div class="' + className + '">' + message + '</div>';
     }
 
     function getSavedEntries() {
@@ -93,69 +81,118 @@
         localStorage.setItem('demo_entries', JSON.stringify(entries));
     }
 
-    function handleEntrySubmit(event) {
+    function showGeneratorMessage(message, type) {
+        var stepTwo = document.querySelector('#mainGeneratorTab .step-two');
+        var loaderMsg = document.querySelector('#mainGeneratorTab .loader-msg');
+        var consoleBox = document.querySelector('#mainGeneratorTab .generator-console');
+
+        if (!stepTwo || !consoleBox) {
+            alert(message);
+            return;
+        }
+
+        stepTwo.style.display = 'block';
+
+        if (loaderMsg) {
+            loaderMsg.textContent = type === 'success' ? 'Complete' : 'Please check your details';
+        }
+
+        var alertClass = 'alert alert-info';
+
+        if (type === 'success') {
+            alertClass = 'alert alert-success';
+        }
+
+        if (type === 'error') {
+            alertClass = 'alert alert-danger';
+        }
+
+        consoleBox.innerHTML = '<div class="' + alertClass + '">' + message + '</div>';
+    }
+
+    function getSelectedValue(selector) {
+        var element = document.querySelector(selector);
+        return element ? element.value : '';
+    }
+
+    function getCheckboxValue(index) {
+        var checkboxes = document.querySelectorAll('#mainGeneratorTab input[type="checkbox"]');
+        return checkboxes[index] ? checkboxes[index].checked : false;
+    }
+
+    function handleMainGenerateClick(event) {
         event.preventDefault();
+
+        var gamerIdInput = document.getElementById('ccUsername');
+        var emailInput = document.getElementById('visitorEmail');
 
         var gamerId = gamerIdInput ? gamerIdInput.value.trim() : '';
         var email = emailInput ? emailInput.value.trim() : '';
-        var platform = platformSelect ? platformSelect.value : '';
-        var currency = currencySelect ? currencySelect.value : '';
-        var proxy = proxyOption ? proxyOption.checked : false;
-        var invisibility = invisibilityOption ? invisibilityOption.checked : false;
+
+        var platform = getSelectedValue('#ccMode select');
+        var currency = getSelectedValue('#ccCoins select');
+        var proxySelected = getCheckboxValue(0);
+        var invisibilitySelected = getCheckboxValue(1);
 
         if (!gamerId) {
-            showConsoleMessage('Please enter your Gamer ID.', 'error');
+            showGeneratorMessage('Please enter your Gamer ID.', 'error');
+
             if (gamerIdInput) {
                 gamerIdInput.focus();
             }
-            return;
+
+            return false;
         }
 
         if (!email) {
-            showConsoleMessage('Please enter your email address.', 'error');
+            showGeneratorMessage('Please enter your email address.', 'error');
+
             if (emailInput) {
                 emailInput.focus();
             }
-            return;
+
+            return false;
         }
 
         if (!isValidEmail(email)) {
-            showConsoleMessage('Please enter a valid email address.', 'error');
+            showGeneratorMessage('Please enter a valid email address.', 'error');
+
             if (emailInput) {
                 emailInput.focus();
             }
-            return;
+
+            return false;
         }
 
-        var entry = {
+        saveEntry({
             gamerId: gamerId,
             email: email,
             platform: platform,
             currency: currency,
-            proxy: proxy,
-            invisibility: invisibility,
+            proxy: proxySelected,
+            invisibility: invisibilitySelected,
             page: window.location.href,
             submittedAt: new Date().toISOString()
-        };
+        });
 
-        saveEntry(entry);
+        showGeneratorMessage('Thank you. Your entry has been saved for this demo.', 'success');
 
-        showConsoleMessage('Thank you. Your entry has been saved for this demo.', 'success');
+        return true;
+    }
 
-        entryForm.reset();
+    ready(function () {
+        hidePreloader();
+        initializeCheckboxStyle();
 
-        if (window.jQuery && typeof window.jQuery.fn.labelauty === 'function') {
-            window.jQuery(':checkbox').labelauty();
+        var enterNowBtn = document.getElementById('enterNowBtn');
+        var mainGenerateBtn = document.getElementById('mainGenerateBtn');
+
+        if (enterNowBtn) {
+            enterNowBtn.addEventListener('click', showMainGeneratorTab);
         }
-    }
 
-    if (enterNowBtn) {
-        enterNowBtn.addEventListener('click', showOriginalForm);
-    }
-
-    if (entryForm) {
-        entryForm.addEventListener('submit', handleEntrySubmit);
-    }
-
-    initLabelauty();
+        if (mainGenerateBtn) {
+            mainGenerateBtn.addEventListener('click', handleMainGenerateClick);
+        }
+    });
 }());
