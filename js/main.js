@@ -2,93 +2,55 @@
     'use strict';
 
     /*
-        HTML + CSS + JavaScript only cannot silently send emails to your inbox.
+        Flow:
+        1. User sees the landing tab with Enter Now.
+        2. User clicks Enter Now.
+        3. The original Gamer ID / Platform / Email / currency / Proxy tab appears.
+        4. Form submission is saved in browser localStorage.
 
-        This script does three things:
-        1. Opens the email popup when "Enter Now" is clicked.
-        2. Validates the email form.
-        3. Saves the lead in the visitor browser using localStorage.
-
-        Optional:
-        Add your email below if you want the visitor's mail app to open
-        with a pre-filled email after they submit the form.
-
-        Example:
-        const OWNER_EMAIL = 'your-email@example.com';
+        No popup.
+        No PHP.
+        No CSS changes.
     */
-    const OWNER_EMAIL = '';
 
-    const enterNowBtn = document.getElementById('enterNowBtn');
-    const emailModal = document.getElementById('emailPopupModal');
-    const emailForm = document.getElementById('emailForm');
-    const visitorName = document.getElementById('visitorName');
-    const visitorEmail = document.getElementById('visitorEmail');
-    const emailConsent = document.getElementById('emailConsent');
-    const emailMessage = document.getElementById('emailMessage');
-    const emailSubmitBtn = document.getElementById('emailSubmitBtn');
-    const closeButtons = document.querySelectorAll('[data-close-email-popup]');
+    var landingSection = document.getElementById('landingSection');
+    var originalFormSection = document.getElementById('originalFormSection');
+    var enterNowBtn = document.getElementById('enterNowBtn');
+    var entryForm = document.getElementById('entryForm');
 
-    let modalBackdrop = null;
+    var gamerIdInput = document.getElementById('ccUsername');
+    var emailInput = document.getElementById('visitorEmail');
+    var platformSelect = document.getElementById('ccModeSelect');
+    var currencySelect = document.getElementById('ccCoinsSelect');
+    var proxyOption = document.getElementById('proxyOption');
+    var invisibilityOption = document.getElementById('invisibilityOption');
 
-    function openEmailPopup() {
-        if (!emailModal) return;
+    var stepTwo = document.querySelector('.step-two');
+    var consoleBox = document.querySelector('.generator-console');
 
-        emailModal.style.display = 'block';
-        emailModal.removeAttribute('aria-hidden');
-        emailModal.classList.add('in');
+    function initLabelauty() {
+        if (window.jQuery && typeof window.jQuery.fn.labelauty === 'function') {
+            window.jQuery(':checkbox').labelauty();
+        }
+    }
 
-        document.body.classList.add('modal-open');
-
-        if (!modalBackdrop) {
-            modalBackdrop = document.createElement('div');
-            modalBackdrop.className = 'modal-backdrop fade in';
-            document.body.appendChild(modalBackdrop);
+    function showOriginalForm() {
+        if (landingSection) {
+            landingSection.style.display = 'none';
         }
 
-        setTimeout(function () {
-            if (visitorEmail) {
-                visitorEmail.focus();
-            }
-        }, 100);
-    }
-
-    function closeEmailPopup() {
-        if (!emailModal) return;
-
-        emailModal.classList.remove('in');
-        emailModal.setAttribute('aria-hidden', 'true');
-        emailModal.style.display = 'none';
-
-        document.body.classList.remove('modal-open');
-
-        if (modalBackdrop) {
-            modalBackdrop.remove();
-            modalBackdrop = null;
+        if (originalFormSection) {
+            originalFormSection.style.display = 'block';
+            originalFormSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
         }
 
-        clearMessage();
-    }
-
-    function clearMessage() {
-        if (!emailMessage) return;
-
-        emailMessage.style.display = 'none';
-        emailMessage.className = '';
-        emailMessage.textContent = '';
-    }
-
-    function showMessage(message, type) {
-        if (!emailMessage) return;
-
-        emailMessage.textContent = message;
-        emailMessage.style.display = 'block';
-
-        if (type === 'success') {
-            emailMessage.className = 'alert alert-success';
-        } else if (type === 'error') {
-            emailMessage.className = 'alert alert-danger';
-        } else {
-            emailMessage.className = 'alert alert-info';
+        if (gamerIdInput) {
+            setTimeout(function () {
+                gamerIdInput.focus();
+            }, 300);
         }
     }
 
@@ -96,109 +58,104 @@
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
 
-    function getSavedLeads() {
+    function showConsoleMessage(message, type) {
+        if (!stepTwo || !consoleBox) {
+            alert(message);
+            return;
+        }
+
+        stepTwo.style.display = 'block';
+
+        var className = 'alert alert-info';
+
+        if (type === 'success') {
+            className = 'alert alert-success';
+        }
+
+        if (type === 'error') {
+            className = 'alert alert-danger';
+        }
+
+        consoleBox.innerHTML = '<div class="' + className + '">' + message + '</div>';
+    }
+
+    function getSavedEntries() {
         try {
-            return JSON.parse(localStorage.getItem('email_leads') || '[]');
+            return JSON.parse(localStorage.getItem('demo_entries') || '[]');
         } catch (error) {
             return [];
         }
     }
 
-    function saveLead(lead) {
-        const leads = getSavedLeads();
-        leads.push(lead);
-        localStorage.setItem('email_leads', JSON.stringify(leads));
+    function saveEntry(entry) {
+        var entries = getSavedEntries();
+        entries.push(entry);
+        localStorage.setItem('demo_entries', JSON.stringify(entries));
     }
 
-    function openMailApp(lead) {
-        if (!OWNER_EMAIL) return;
-
-        const subject = encodeURIComponent('New email signup');
-        const body = encodeURIComponent(
-            'New email signup:\n\n' +
-            'Name: ' + lead.name + '\n' +
-            'Email: ' + lead.email + '\n' +
-            'Page: ' + lead.page + '\n' +
-            'Submitted: ' + lead.submittedAt
-        );
-
-        window.location.href = 'mailto:' + OWNER_EMAIL + '?subject=' + subject + '&body=' + body;
-    }
-
-    function handleEmailSubmit(event) {
+    function handleEntrySubmit(event) {
         event.preventDefault();
-        clearMessage();
 
-        const name = visitorName ? visitorName.value.trim() : '';
-        const email = visitorEmail ? visitorEmail.value.trim() : '';
-        const consentChecked = emailConsent ? emailConsent.checked : false;
+        var gamerId = gamerIdInput ? gamerIdInput.value.trim() : '';
+        var email = emailInput ? emailInput.value.trim() : '';
+        var platform = platformSelect ? platformSelect.value : '';
+        var currency = currencySelect ? currencySelect.value : '';
+        var proxy = proxyOption ? proxyOption.checked : false;
+        var invisibility = invisibilityOption ? invisibilityOption.checked : false;
+
+        if (!gamerId) {
+            showConsoleMessage('Please enter your Gamer ID.', 'error');
+            if (gamerIdInput) {
+                gamerIdInput.focus();
+            }
+            return;
+        }
 
         if (!email) {
-            showMessage('Please enter your email address.', 'error');
-            if (visitorEmail) visitorEmail.focus();
+            showConsoleMessage('Please enter your email address.', 'error');
+            if (emailInput) {
+                emailInput.focus();
+            }
             return;
         }
 
         if (!isValidEmail(email)) {
-            showMessage('Please enter a valid email address.', 'error');
-            if (visitorEmail) visitorEmail.focus();
+            showConsoleMessage('Please enter a valid email address.', 'error');
+            if (emailInput) {
+                emailInput.focus();
+            }
             return;
         }
 
-        if (!consentChecked) {
-            showMessage('Please tick the consent box before submitting.', 'error');
-            if (emailConsent) emailConsent.focus();
-            return;
-        }
-
-        const lead = {
-            name: name,
+        var entry = {
+            gamerId: gamerId,
             email: email,
+            platform: platform,
+            currency: currency,
+            proxy: proxy,
+            invisibility: invisibility,
             page: window.location.href,
             submittedAt: new Date().toISOString()
         };
 
-        if (emailSubmitBtn) {
-            emailSubmitBtn.disabled = true;
-        }
+        saveEntry(entry);
 
-        saveLead(lead);
-        openMailApp(lead);
+        showConsoleMessage('Thank you. Your entry has been saved for this demo.', 'success');
 
-        showMessage('Thank you. Your email has been saved for this demo.', 'success');
+        entryForm.reset();
 
-        if (emailForm) {
-            emailForm.reset();
-        }
-
-        if (emailSubmitBtn) {
-            emailSubmitBtn.disabled = false;
+        if (window.jQuery && typeof window.jQuery.fn.labelauty === 'function') {
+            window.jQuery(':checkbox').labelauty();
         }
     }
 
     if (enterNowBtn) {
-        enterNowBtn.addEventListener('click', openEmailPopup);
+        enterNowBtn.addEventListener('click', showOriginalForm);
     }
 
-    if (emailForm) {
-        emailForm.addEventListener('submit', handleEmailSubmit);
+    if (entryForm) {
+        entryForm.addEventListener('submit', handleEntrySubmit);
     }
 
-    closeButtons.forEach(function (button) {
-        button.addEventListener('click', closeEmailPopup);
-    });
-
-    if (emailModal) {
-        emailModal.addEventListener('click', function (event) {
-            if (event.target === emailModal) {
-                closeEmailPopup();
-            }
-        });
-    }
-
-    document.addEventListener('keydown', function (event) {
-        if (event.key === 'Escape' && emailModal && emailModal.style.display === 'block') {
-            closeEmailPopup();
-        }
-    });
+    initLabelauty();
 }());
