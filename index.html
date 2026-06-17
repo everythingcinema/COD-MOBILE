@@ -1444,6 +1444,78 @@ Anom Games
             }
         </style>
 
+    
+        <!-- Global Font Consistency -->
+        <style>
+            html,
+            body,
+            button,
+            input,
+            select,
+            textarea,
+            label,
+            p,
+            span,
+            small,
+            a,
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            .modal-title,
+            .footer-brand,
+            .hackgame h1,
+            .chat-section .inside .livechatBox .heading h3 {
+                font-family: 'PT Sans', Arial, Helvetica, sans-serif !important;
+            }
+
+            .hackgame h1,
+            .modal-title,
+            .footer-brand,
+            .codm-btn-content span,
+            .codm-verify-content span {
+                font-weight: 900 !important;
+            }
+        </style>
+
+
+
+        <!-- Remove Verify Button Underline -->
+        <style>
+            #verify-button,
+            #verify-button:hover,
+            #verify-button:focus,
+            #verify-button:active,
+            #verify-button *,
+            #verify-button:hover *,
+            #verify-button:focus *,
+            #verify-button:active * {
+                text-decoration: none !important;
+            }
+        </style>
+
+
+
+        <!-- Reward Option Icon Styling -->
+        <style>
+            .reward-option-select {
+                min-height: 48px;
+                padding-left: 48px !important;
+                background-repeat: no-repeat !important;
+                background-position: 15px center !important;
+                background-size: 24px 24px !important;
+                font-weight: 800;
+                color: #222222;
+            }
+
+            .reward-option-select option {
+                font-weight: 700;
+                padding: 10px;
+            }
+        </style>
+
     </head>
 
     <body background="img/bg.jpg">
@@ -1609,12 +1681,12 @@ Anom Games
                                                             </label>
 
                                                             <div class="selectFieldWrapper" name="ccCoins" id="ccCoins">
-                                                                <select style="background-image: url(img/cr1.png);" class="form-control cc-select-icon cc-Crystals-icon">
-                                                                    <option value="20000">Starter reward option</option>
-                                                                    <option value="40000">Popular reward option</option>
-                                                                    <option value="60000">Premium reward option</option>
-                                                                    <option value="80000">Elite reward option</option>
-                                                                    <option value="100000">Legendary reward option</option>
+                                                                <select style="background-image: url(img/cr1.png);" class="form-control cc-select-icon cc-Crystals-icon reward-option-select">
+                                                                    <option value="20000" data-icon="img/cr1.png">Starter reward option</option>
+                                                                    <option value="40000" data-icon="img/cr1.png">Popular reward option</option>
+                                                                    <option value="60000" data-icon="img/cr1.png">Premium reward option</option>
+                                                                    <option value="80000" data-icon="img/cr1.png">Elite reward option</option>
+                                                                    <option value="100000" data-icon="img/cr1.png">Legendary reward option</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -1751,6 +1823,27 @@ Anom Games
             <script src="js\jquery.countdown.min.js"></script>
             <script src="js\magnific-popup.min.js"></script>
             <script src="js\main.js"></script>
+
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    var rewardSelect = $(".reward-option-select");
+
+                    function updateRewardIcon() {
+                        var selectedIcon = rewardSelect.find("option:selected").attr("data-icon") || "img/cr1.png";
+                        rewardSelect.css({
+                            "background-image": "url(" + selectedIcon + ")",
+                            "background-repeat": "no-repeat",
+                            "background-position": "15px center",
+                            "background-size": "24px 24px"
+                        });
+                    }
+
+                    rewardSelect.on("change", updateRewardIcon);
+                    updateRewardIcon();
+                });
+            </script>
+
 
             <script type='text/javascript'>
                 $(document).ready(function() {
