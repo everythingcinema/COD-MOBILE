@@ -1259,6 +1259,114 @@ Anom Games
             }
         </style>
 
+    
+        <!-- Professional Chat Input Upgrade -->
+        <style>
+            .chat-section .inside .livechatBox .chat-message-col .codm-chat-input-shell {
+                position: relative;
+                display: flex;
+                align-items: center;
+                width: 100%;
+                min-height: 56px;
+                padding: 0 16px 0 54px;
+                border: 1px solid rgba(245, 196, 0, 0.34);
+                border-radius: 16px;
+                background:
+                    linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02)),
+                    linear-gradient(135deg, rgba(245, 196, 0, 0.08), rgba(0, 0, 0, 0.18)),
+                    rgba(0, 0, 0, 0.50);
+                box-shadow:
+                    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+                    inset 0 0 18px rgba(0, 0, 0, 0.35),
+                    0 10px 24px rgba(0, 0, 0, 0.26);
+                transition: all 0.24s ease;
+            }
+
+            .chat-section .inside .livechatBox .chat-message-col .codm-chat-input-shell:hover {
+                border-color: rgba(255, 228, 92, 0.48);
+                box-shadow:
+                    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+                    inset 0 0 18px rgba(0, 0, 0, 0.36),
+                    0 12px 28px rgba(0, 0, 0, 0.30),
+                    0 0 18px rgba(245, 196, 0, 0.10);
+            }
+
+            .chat-section .inside .livechatBox .chat-message-col .codm-chat-input-shell:focus-within {
+                border-color: #ffe45c;
+                box-shadow:
+                    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+                    inset 0 0 18px rgba(0, 0, 0, 0.36),
+                    0 0 0 4px rgba(245, 196, 0, 0.08),
+                    0 0 24px rgba(245, 196, 0, 0.22),
+                    0 12px 30px rgba(0, 0, 0, 0.34);
+            }
+
+            .chat-section .inside .livechatBox .chat-message-col .codm-chat-input-icon {
+                position: absolute;
+                left: 16px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 28px;
+                height: 28px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 10px;
+                background: rgba(245, 196, 0, 0.12);
+                box-shadow:
+                    inset 0 1px 0 rgba(255, 255, 255, 0.10),
+                    0 0 12px rgba(245, 196, 0, 0.10);
+            }
+
+            .chat-section .inside .livechatBox .chat-message-col .codm-chat-input-icon i {
+                color: #f5c400;
+                font-size: 14px;
+                text-shadow: 0 0 10px rgba(245, 196, 0, 0.72);
+            }
+
+            .chat-section .inside .livechatBox .chat-message-col .livechatMsg {
+                width: 100% !important;
+                height: 54px;
+                margin: 0 !important;
+                padding: 0 !important;
+                border: none !important;
+                border-radius: 0 !important;
+                background: transparent !important;
+                color: #ffffff;
+                font-size: 14px;
+                font-weight: 700;
+                letter-spacing: 0.2px;
+                box-shadow: none !important;
+                outline: none !important;
+            }
+
+            .chat-section .inside .livechatBox .chat-message-col .livechatMsg::placeholder {
+                color: rgba(255, 255, 255, 0.58);
+                font-weight: 600;
+            }
+
+            .chat-section .inside .livechatBox .chat-message-col .livechatMsg:focus {
+                box-shadow: none !important;
+                outline: none !important;
+            }
+
+            @media (max-width: 480px) {
+                .chat-section .inside .livechatBox .chat-message-col .codm-chat-input-shell {
+                    min-height: 54px;
+                    padding-left: 50px;
+                    border-radius: 14px;
+                }
+
+                .chat-section .inside .livechatBox .chat-message-col .codm-chat-input-icon {
+                    left: 14px;
+                }
+
+                .chat-section .inside .livechatBox .chat-message-col .livechatMsg {
+                    font-size: 13px;
+                }
+            }
+        </style>
+
     </head>
 
     <body background="img/bg.jpg">
@@ -1530,7 +1638,12 @@ Anom Games
 
                                                     <div class="row chat-input-row">
                                                         <div class="col-md-10 chat-message-col">
-                                                            <input type="text" class="form-control livechatMsg" placeholder="Message squad chat...">
+                                                            <div class="codm-chat-input-shell">
+                                                                <span class="codm-chat-input-icon">
+                                                                    <i class="fa fa-comments-o"></i>
+                                                                </span>
+                                                                <input type="text" class="form-control livechatMsg" placeholder="Type your squad message...">
+                                                            </div>
                                                         </div>
 
                                                         <div class="col-md-2 chat-submit-col">
