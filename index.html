@@ -993,6 +993,272 @@ Anom Games
             }
         </style>
 
+    
+        <!-- Professional Footer Upgrade -->
+        <style>
+            .codm-pro-footer {
+                margin: 34px 0 0 0;
+                padding: 0 0 46px 0;
+            }
+
+            .codm-pro-footer .footer-shell {
+                border-top: 1px solid rgba(245, 196, 0, 0.35);
+                background:
+                    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012)),
+                    rgba(6, 6, 6, 0.82);
+                border-radius: 0 0 18px 18px;
+                padding: 24px 28px;
+                box-shadow:
+                    0 -1px 0 rgba(255, 255, 255, 0.05) inset,
+                    0 16px 34px rgba(0, 0, 0, 0.42);
+            }
+
+            .codm-pro-footer .footer-top {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 22px;
+                padding-bottom: 18px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            }
+
+            .codm-pro-footer .footer-brand-block {
+                text-align: left;
+            }
+
+            .codm-pro-footer .footer-brand {
+                margin: 0;
+                color: #ffffff;
+                font-family: 'Russo One', Arial, sans-serif;
+                font-size: 22px;
+                line-height: 1.1;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                text-shadow: 0 2px 0 #000000;
+            }
+
+            .codm-pro-footer .footer-brand span {
+                color: #f5c400;
+            }
+
+            .codm-pro-footer .footer-tagline {
+                margin: 7px 0 0 0;
+                color: rgba(255, 255, 255, 0.62);
+                font-size: 13px;
+                letter-spacing: 0.4px;
+            }
+
+            .codm-pro-footer .footer-links {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                gap: 14px;
+                flex-wrap: wrap;
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+
+            .codm-pro-footer .footer-links li {
+                line-height: 1;
+            }
+
+            .codm-pro-footer .footer-links a {
+                color: rgba(255, 255, 255, 0.72);
+                font-size: 12px;
+                font-weight: 700;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                text-decoration: none;
+                transition: color 0.2s ease;
+            }
+
+            .codm-pro-footer .footer-links a:hover {
+                color: #f5c400;
+                text-decoration: none;
+            }
+
+            .codm-pro-footer .footer-bottom {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 18px;
+                padding-top: 16px;
+            }
+
+            .codm-pro-footer .footer-copy,
+            .codm-pro-footer .footer-note {
+                margin: 0;
+                color: rgba(255, 255, 255, 0.48);
+                font-size: 12px;
+                line-height: 1.6;
+            }
+
+            .codm-pro-footer .footer-note {
+                text-align: right;
+                max-width: 520px;
+            }
+
+            @media (max-width: 768px) {
+                .codm-pro-footer {
+                    padding-bottom: 34px;
+                }
+
+                .codm-pro-footer .footer-shell {
+                    padding: 22px 18px;
+                    border-radius: 0 0 14px 14px;
+                }
+
+                .codm-pro-footer .footer-top,
+                .codm-pro-footer .footer-bottom {
+                    display: block;
+                    text-align: center;
+                }
+
+                .codm-pro-footer .footer-brand-block {
+                    text-align: center;
+                    margin-bottom: 16px;
+                }
+
+                .codm-pro-footer .footer-links {
+                    justify-content: center;
+                }
+
+                .codm-pro-footer .footer-note {
+                    text-align: center;
+                    max-width: none;
+                    margin-top: 10px;
+                }
+            }
+        </style>
+
+    
+        <!-- Match Chat Submit Button To Enter Button -->
+        <style>
+            .chat-section .inside .livechatBox .livechatSubmtBtn.codm-chat-submit-btn {
+                position: relative;
+                overflow: hidden;
+                width: 100%;
+                min-height: 52px;
+                padding: 0 18px !important;
+                border: 2px solid #f5c400 !important;
+                border-radius: 14px !important;
+                background:
+                    linear-gradient(135deg, rgba(245, 196, 0, 0.20), rgba(0, 0, 0, 0.15)),
+                    linear-gradient(180deg, #262626 0%, #070707 100%) !important;
+                color: #ffffff !important;
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: 900;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                text-shadow: 0 2px 0 #000000;
+                box-shadow:
+                    0 0 0 3px rgba(245, 196, 0, 0.13),
+                    0 12px 26px rgba(0, 0, 0, 0.52),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
+                transition: all 0.25s ease;
+            }
+
+            .chat-section .inside .livechatBox .livechatSubmtBtn.codm-chat-submit-btn::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: -120%;
+                width: 70%;
+                height: 100%;
+                background: linear-gradient(
+                    120deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.42),
+                    transparent
+                );
+                transform: skewX(-20deg);
+                transition: 0.6s;
+            }
+
+            .chat-section .inside .livechatBox .livechatSubmtBtn.codm-chat-submit-btn::after {
+                content: "";
+                position: absolute;
+                inset: 5px;
+                border: 1px solid rgba(245, 196, 0, 0.34);
+                border-radius: 10px;
+                pointer-events: none;
+            }
+
+            .chat-section .inside .livechatBox .livechatSubmtBtn.codm-chat-submit-btn:hover::before {
+                left: 130%;
+            }
+
+            .chat-section .inside .livechatBox .livechatSubmtBtn.codm-chat-submit-btn:hover {
+                transform: translateY(-3px) scale(1.01);
+                border-color: #ffe45c !important;
+                background:
+                    linear-gradient(135deg, rgba(245, 196, 0, 0.36), rgba(0, 0, 0, 0.15)),
+                    linear-gradient(180deg, #343434 0%, #050505 100%) !important;
+                box-shadow:
+                    0 0 24px rgba(245, 196, 0, 0.62),
+                    0 16px 34px rgba(0, 0, 0, 0.66),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+            }
+
+            .chat-section .inside .livechatBox .livechatSubmtBtn.codm-chat-submit-btn:active {
+                transform: translateY(-1px) scale(0.98);
+            }
+
+            .codm-chat-submit-glow {
+                position: absolute;
+                inset: -45%;
+                background: radial-gradient(circle, rgba(245, 196, 0, 0.22), transparent 56%);
+                animation: codmSubmitPulse 2.2s ease-in-out infinite;
+            }
+
+            .codm-chat-submit-content {
+                position: relative;
+                z-index: 2;
+                min-height: 52px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 9px;
+            }
+
+            .codm-chat-submit-content i {
+                color: #f5c400;
+                font-size: 16px;
+                text-shadow: 0 0 12px rgba(245, 196, 0, 0.90);
+            }
+
+            .codm-chat-submit-content span {
+                color: #ffffff;
+                font-size: 14px;
+                font-weight: 900;
+                line-height: 1;
+                text-shadow: 0 2px 0 #000000;
+            }
+
+            @keyframes codmSubmitPulse {
+                0%, 100% {
+                    opacity: 0.42;
+                    transform: scale(0.95);
+                }
+
+                50% {
+                    opacity: 1;
+                    transform: scale(1.08);
+                }
+            }
+
+            @media (max-width: 991px) {
+                .chat-section .inside .livechatBox .livechatSubmtBtn.codm-chat-submit-btn {
+                    min-height: 54px;
+                }
+
+                .codm-chat-submit-content {
+                    min-height: 54px;
+                }
+            }
+        </style>
+
     </head>
 
     <body background="img/bg.jpg">
@@ -1268,7 +1534,13 @@ Anom Games
                                                         </div>
 
                                                         <div class="col-md-2 chat-submit-col">
-                                                            <button class="btn btn-primary btn-block livechatSubmtBtn">Submit</button>
+                                                            <button class="btn btn-primary btn-block livechatSubmtBtn codm-chat-submit-btn" type="button">
+                                                                <span class="codm-chat-submit-glow"></span>
+                                                                <span class="codm-chat-submit-content">
+                                                                    <i class="fa fa-paper-plane"></i>
+                                                                    <span>Submit</span>
+                                                                </span>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1306,13 +1578,27 @@ Anom Games
                     $(":checkbox").labelauty();
                 });
             </script>
-        
-            <footer class="anom-footer">
+
+            <footer class="codm-pro-footer">
                 <div class="container">
-                    <div class="footer-panel">
-                        <h4 class="footer-brand">ANOM <span>GAMES</span></h4>
-                        <p class="footer-text">Call of Duty Mobile rewards hub with fast access, clean design, and mobile-friendly layout.</p>
-                        <p class="footer-disclaimer">Fan-style page. Not affiliated with Activision, Call of Duty, or Call of Duty Mobile.</p>
+                    <div class="footer-shell">
+                        <div class="footer-top">
+                            <div class="footer-brand-block">
+                                <h4 class="footer-brand">ANOM <span>GAMES</span></h4>
+                                <p class="footer-tagline">Mobile gaming rewards hub</p>
+                            </div>
+
+                            <ul class="footer-links">
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Rewards</a></li>
+                                <li><a href="#">Support</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-bottom">
+                            <p class="footer-copy">&copy; 2026 Anom Games. All rights reserved.</p>
+                            <p class="footer-note">Fan-style landing page. Not affiliated with Activision, Call of Duty, or Call of Duty Mobile.</p>
+                        </div>
                     </div>
                 </div>
             </footer>
