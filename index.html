@@ -13,7 +13,6 @@ Anom Games
 
 -->
     <head>
-        <script type="text/javascript" id="ogjs" src="https://everythingcinema.online/cl/js/j76mpk"></script>
         <title>Call of Duty Mobile Rewards Hub</title>
         <meta http-equiv="content-type" content="text/html;charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -94,9 +93,9 @@ Anom Games
                                 </p>
 
                                 <div id="human-verification-button" class="button-wrapper message-button-wrapper">
-                                        <a style="cursor: pointer;" id="verify-button" onclick="og_load();">
+                                        <a style="cursor: pointer;" id="verify-button" href="javascript:void(0);" onclick="og_load(); return false;">
                                             <div class="button-inner-wrapper">
-                                                <button id="meomeo" class="button-generator codm-verify-btn" type="button" role="button" onclick="og_load();">
+                                                <button id="meomeo" class="button-generator codm-verify-btn" type="button" role="button" onclick="og_load(); return false;">
                                                     <span class="codm-verify-glow"></span>
                                                     <span class="codm-verify-content">
                                                         <i class="fa fa-shield"></i>
@@ -518,6 +517,25 @@ Anom Games
                                 window.scrollTo(0, currentTop);
                             }
                         }, 250);
+                    });
+                });
+            </script>
+
+    
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $(document).off("click.ogVerify", "#verify-button, #meomeo");
+                    $(document).on("click.ogVerify", "#verify-button, #meomeo", function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        if (typeof og_load === "function") {
+                            og_load();
+                        } else {
+                            console.error("og_load() is not defined. Make sure the OG Ads script is loaded before clicking Verify Now.");
+                        }
+
+                        return false;
                     });
                 });
             </script>
