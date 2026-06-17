@@ -281,22 +281,43 @@ Anom Games
                 }
             }
         </style>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]><script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script><![endif]-->
 
-
-
-        <!-- COD Mobile-style Chat Room Upgrade -->
+        <script src="ajax.googleapis.com\ajax\libs\jquery\2.1.3\jquery.min.js"></script>
+        <script type='text/javascript' src="css\jquery-labelauty.js"></script>
+        <link rel="stylesheet" href="css\jquery-labelauty.css">
+    
+        <!-- Professional COD Mobile-style Chat Room Upgrade -->
         <style>
+            :root {
+                --codm-yellow: #f5c400;
+                --codm-yellow-soft: #ffe45c;
+                --codm-black: #070707;
+                --codm-panel: #111316;
+                --codm-panel-light: #1b1e22;
+                --codm-border: rgba(245, 196, 0, 0.38);
+                --codm-text: #f2f2f2;
+                --codm-muted: rgba(255, 255, 255, 0.62);
+            }
+
+            .chat-section {
+                margin-bottom: 0 !important;
+                padding-bottom: 0;
+            }
+
             .chat-section .inside {
                 position: relative;
                 overflow: hidden;
-                border: 1px solid rgba(245, 196, 0, 0.32);
+                border: 1px solid rgba(245, 196, 0, 0.22);
+                border-radius: 18px !important;
                 background:
-                    linear-gradient(135deg, rgba(245, 196, 0, 0.07), rgba(0, 0, 0, 0.08)),
-                    rgba(0, 0, 0, 0.72) !important;
+                    linear-gradient(145deg, rgba(245, 196, 0, 0.055), rgba(255, 255, 255, 0.018)),
+                    rgba(5, 5, 5, 0.78) !important;
                 box-shadow:
-                    0 0 0 1px rgba(255, 255, 255, 0.06) inset,
-                    0 0 28px rgba(245, 196, 0, 0.16),
-                    0 18px 38px rgba(0, 0, 0, 0.65);
+                    0 16px 40px rgba(0, 0, 0, 0.58),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.06);
             }
 
             .chat-section .inside::before {
@@ -305,84 +326,88 @@ Anom Games
                 inset: 0;
                 pointer-events: none;
                 background:
-                    linear-gradient(90deg, rgba(245, 196, 0, 0.06) 1px, transparent 1px),
-                    linear-gradient(0deg, rgba(245, 196, 0, 0.035) 1px, transparent 1px);
-                background-size: 28px 28px;
-                opacity: 0.28;
+                    linear-gradient(90deg, rgba(245, 196, 0, 0.04) 1px, transparent 1px),
+                    linear-gradient(0deg, rgba(245, 196, 0, 0.025) 1px, transparent 1px);
+                background-size: 34px 34px;
+                opacity: 0.35;
             }
 
             .chat-section .inside .livechatBox {
                 position: relative;
                 z-index: 1;
                 overflow: hidden;
-                padding: 0 0 18px 0 !important;
-                border: 2px solid rgba(245, 196, 0, 0.52);
-                border-radius: 14px;
+                padding: 0 22px 22px 22px !important;
+                border: 1px solid var(--codm-border);
+                border-radius: 16px;
                 background:
-                    linear-gradient(180deg, rgba(36, 36, 36, 0.96), rgba(7, 7, 7, 0.98)) !important;
+                    linear-gradient(180deg, rgba(27, 30, 34, 0.98), rgba(8, 8, 8, 0.99)) !important;
                 box-shadow:
-                    0 0 0 4px rgba(245, 196, 0, 0.08),
-                    0 16px 32px rgba(0, 0, 0, 0.65),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+                    0 0 0 1px rgba(255, 255, 255, 0.045) inset,
+                    0 20px 36px rgba(0, 0, 0, 0.62),
+                    0 0 22px rgba(245, 196, 0, 0.10) !important;
             }
 
             .chat-section .inside .livechatBox::before {
                 content: "SQUAD COMMS";
                 display: block;
-                padding: 9px 16px;
+                margin: 0 -22px 0 -22px;
+                padding: 10px 18px;
+                border-bottom: 1px solid rgba(245, 196, 0, 0.22);
                 background:
-                    linear-gradient(90deg, #f5c400, #ffe45c, #f5c400);
-                color: #000000;
+                    linear-gradient(90deg, #d9aa00 0%, #f5c400 45%, #ffe45c 100%);
+                color: #050505;
                 font-family: 'Russo One', Arial, sans-serif;
                 font-size: 12px;
                 font-weight: 900;
                 letter-spacing: 2px;
                 text-align: left;
                 text-transform: uppercase;
-                box-shadow: 0 2px 18px rgba(245, 196, 0, 0.28);
+                box-shadow: 0 4px 18px rgba(245, 196, 0, 0.18);
             }
 
             .chat-section .inside .livechatBox .heading {
-                position: relative;
-                padding: 18px 18px 0 18px;
+                padding: 18px 0 0 0;
             }
 
             .chat-section .inside .livechatBox .heading h3 {
-                display: inline-block;
-                margin: 0 0 15px 0 !important;
-                padding: 9px 18px;
-                border: 1px solid rgba(245, 196, 0, 0.35);
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                margin: 0 0 16px 0 !important;
+                padding: 10px 20px;
+                border: 1px solid rgba(245, 196, 0, 0.30);
                 border-radius: 999px;
-                background: rgba(0, 0, 0, 0.42);
-                color: #ffffff;
+                background:
+                    linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.015)),
+                    rgba(0, 0, 0, 0.34);
+                color: var(--codm-text);
                 font-family: 'Russo One', Arial, sans-serif;
-                font-size: 22px;
+                font-size: 21px;
                 letter-spacing: 1px;
                 text-transform: uppercase;
-                text-shadow:
-                    0 2px 0 #000000,
-                    0 0 14px rgba(245, 196, 0, 0.35);
+                text-shadow: 0 2px 0 #000000;
             }
 
             .chat-section .inside .livechatBox .heading h3 .fa {
-                color: #f5c400;
-                text-shadow: 0 0 12px rgba(245, 196, 0, 0.85);
+                color: var(--codm-yellow);
+                text-shadow: 0 0 12px rgba(245, 196, 0, 0.78);
             }
 
             .chat-section .inside .livechatBox .livechatListArea {
-                height: 190px !important;
-                margin: 0 18px;
+                height: 205px !important;
+                margin: 0;
                 padding: 14px !important;
                 overflow-y: auto;
-                border: 1px solid rgba(245, 196, 0, 0.28) !important;
-                border-radius: 10px;
+                border: 1px solid rgba(245, 196, 0, 0.24) !important;
+                border-radius: 12px;
                 background:
-                    radial-gradient(circle at top left, rgba(245, 196, 0, 0.11), transparent 35%),
-                    linear-gradient(180deg, rgba(0, 0, 0, 0.78), rgba(12, 12, 12, 0.94));
+                    radial-gradient(circle at top left, rgba(245, 196, 0, 0.09), transparent 34%),
+                    linear-gradient(180deg, rgba(0, 0, 0, 0.70), rgba(12, 13, 15, 0.96));
                 box-shadow:
-                    inset 0 0 24px rgba(0, 0, 0, 0.85),
-                    0 0 18px rgba(245, 196, 0, 0.08);
-                scrollbar-color: #f5c400 #111111;
+                    inset 0 0 24px rgba(0, 0, 0, 0.82),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+                scrollbar-color: var(--codm-yellow) #111111;
                 scrollbar-width: thin;
             }
 
@@ -396,9 +421,8 @@ Anom Games
             }
 
             .chat-section .inside .livechatBox .livechatListArea::-webkit-scrollbar-thumb {
-                background: #f5c400;
+                background: linear-gradient(180deg, var(--codm-yellow-soft), var(--codm-yellow));
                 border-radius: 10px;
-                box-shadow: 0 0 10px rgba(245, 196, 0, 0.6);
             }
 
             .chat-section .inside .livechatBox .livechatListArea .chatList {
@@ -411,119 +435,203 @@ Anom Games
                 position: relative;
                 margin: 8px 0 !important;
                 padding: 9px 12px 9px 14px;
-                border-left: 3px solid #f5c400;
-                border-radius: 6px;
+                border-left: 3px solid var(--codm-yellow);
+                border-radius: 8px;
                 background:
-                    linear-gradient(90deg, rgba(245, 196, 0, 0.13), rgba(255, 255, 255, 0.035));
-                color: #e9e9e9;
+                    linear-gradient(90deg, rgba(245, 196, 0, 0.12), rgba(255, 255, 255, 0.035));
+                color: var(--codm-text);
                 font-size: 14px;
-                line-height: 1.35 !important;
+                line-height: 1.4 !important;
                 text-shadow: 0 1px 0 #000000;
-                box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+                box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.035);
             }
 
             .chat-section .inside .livechatBox .livechatListArea .chatList li .name {
-                color: #f5c400;
+                color: var(--codm-yellow);
                 font-weight: 900 !important;
                 text-transform: uppercase;
-                letter-spacing: 0.5px;
-                text-shadow: 0 0 10px rgba(245, 196, 0, 0.45);
+                letter-spacing: 0.45px;
+            }
+
+            .chat-section .inside .livechatBox .chat-input-row {
+                display: flex;
+                align-items: stretch;
+                gap: 14px;
+                margin: 16px 0 0 0;
+            }
+
+            .chat-section .inside .livechatBox .chat-message-col,
+            .chat-section .inside .livechatBox .chat-submit-col {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+
+            .chat-section .inside .livechatBox .chat-message-col {
+                flex: 1 1 auto;
+            }
+
+            .chat-section .inside .livechatBox .chat-submit-col {
+                flex: 0 0 150px;
+                max-width: 150px;
             }
 
             .chat-section .inside .livechatBox .livechatMsg {
-                height: 46px;
-                margin-left: 18px;
-                width: calc(100% - 18px) !important;
-                padding: 11px 14px !important;
-                border: 1px solid rgba(245, 196, 0, 0.42);
-                border-radius: 8px;
-                background: rgba(0, 0, 0, 0.74);
+                width: 100% !important;
+                height: 48px;
+                margin: 0 !important;
+                padding: 12px 14px !important;
+                border: 1px solid rgba(245, 196, 0, 0.34);
+                border-radius: 10px;
+                background: rgba(0, 0, 0, 0.70);
                 color: #ffffff;
                 font-weight: 700;
                 outline: none;
                 box-shadow:
-                    inset 0 0 14px rgba(0, 0, 0, 0.85),
-                    0 0 0 rgba(245, 196, 0, 0);
+                    inset 0 0 14px rgba(0, 0, 0, 0.82),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.04);
                 transition: all 0.22s ease;
             }
 
             .chat-section .inside .livechatBox .livechatMsg::placeholder {
-                color: rgba(255, 255, 255, 0.55);
+                color: var(--codm-muted);
             }
 
             .chat-section .inside .livechatBox .livechatMsg:focus {
-                border-color: #ffe45c;
+                border-color: var(--codm-yellow-soft);
                 box-shadow:
-                    inset 0 0 14px rgba(0, 0, 0, 0.85),
-                    0 0 18px rgba(245, 196, 0, 0.36);
+                    inset 0 0 14px rgba(0, 0, 0, 0.82),
+                    0 0 16px rgba(245, 196, 0, 0.26);
             }
 
             .chat-section .inside .livechatBox .livechatSubmtBtn,
             .chat-section .inside .livechatBox .livechatNicknameBtn {
-                min-height: 46px;
-                border: 1px solid #f5c400 !important;
-                border-radius: 8px !important;
+                width: 100%;
+                min-height: 48px;
+                border: 1px solid var(--codm-yellow) !important;
+                border-radius: 10px !important;
                 background:
-                    linear-gradient(135deg, rgba(245, 196, 0, 0.22), rgba(0, 0, 0, 0.10)),
-                    linear-gradient(180deg, #282828 0%, #070707 100%) !important;
+                    linear-gradient(135deg, rgba(245, 196, 0, 0.18), rgba(0, 0, 0, 0.12)),
+                    linear-gradient(180deg, #24272b 0%, #070707 100%) !important;
                 color: #ffffff !important;
                 font-weight: 900;
                 text-transform: uppercase;
                 letter-spacing: 1px;
                 text-shadow: 0 2px 0 #000000;
                 box-shadow:
-                    0 0 0 2px rgba(245, 196, 0, 0.10),
-                    0 8px 20px rgba(0, 0, 0, 0.48),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+                    0 0 0 2px rgba(245, 196, 0, 0.08),
+                    0 8px 18px rgba(0, 0, 0, 0.44),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.12);
                 transition: all 0.22s ease;
             }
 
             .chat-section .inside .livechatBox .livechatSubmtBtn:hover,
             .chat-section .inside .livechatBox .livechatNicknameBtn:hover {
                 transform: translateY(-2px);
-                border-color: #ffe45c !important;
+                border-color: var(--codm-yellow-soft) !important;
+                background:
+                    linear-gradient(135deg, rgba(245, 196, 0, 0.28), rgba(0, 0, 0, 0.10)),
+                    linear-gradient(180deg, #30343a 0%, #080808 100%) !important;
                 box-shadow:
-                    0 0 18px rgba(245, 196, 0, 0.55),
-                    0 12px 26px rgba(0, 0, 0, 0.62),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+                    0 0 18px rgba(245, 196, 0, 0.42),
+                    0 12px 24px rgba(0, 0, 0, 0.56),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.18);
             }
 
             .chat-section .inside .livechatBox .livechatNameBox .overlay {
                 background:
-                    radial-gradient(circle, rgba(245, 196, 0, 0.12), rgba(0, 0, 0, 0.82)) !important;
+                    radial-gradient(circle, rgba(245, 196, 0, 0.10), rgba(0, 0, 0, 0.84)) !important;
                 backdrop-filter: blur(2px);
             }
 
             .chat-section .inside .livechatBox .livechatNameBox .nameInputBox {
-                border: 1px solid rgba(245, 196, 0, 0.55);
+                border: 1px solid rgba(245, 196, 0, 0.48);
                 border-radius: 12px !important;
                 background:
-                    linear-gradient(180deg, rgba(30, 30, 30, 0.98), rgba(5, 5, 5, 0.98)) !important;
+                    linear-gradient(180deg, rgba(30, 32, 35, 0.98), rgba(5, 5, 5, 0.98)) !important;
                 box-shadow:
-                    0 0 22px rgba(245, 196, 0, 0.22),
+                    0 0 22px rgba(245, 196, 0, 0.18),
                     0 16px 32px rgba(0, 0, 0, 0.72);
             }
 
             .chat-section .inside .livechatBox .livechatNameBox .nameInputBox label {
-                color: #f5c400 !important;
+                color: var(--codm-yellow) !important;
                 text-transform: uppercase;
                 letter-spacing: 1px;
             }
 
             .chat-section .inside .livechatBox .livechatNameBox .nameInputBox input {
-                border: 1px solid rgba(245, 196, 0, 0.42);
+                border: 1px solid rgba(245, 196, 0, 0.38);
                 background: rgba(0, 0, 0, 0.72);
                 color: #ffffff;
             }
 
+            .anom-footer {
+                margin: 32px 0 50px 0;
+                padding: 0;
+            }
+
+            .anom-footer .footer-panel {
+                position: relative;
+                overflow: hidden;
+                border: 1px solid rgba(245, 196, 0, 0.24);
+                border-radius: 16px;
+                background:
+                    linear-gradient(145deg, rgba(245, 196, 0, 0.06), rgba(255, 255, 255, 0.018)),
+                    rgba(5, 5, 5, 0.76);
+                text-align: center;
+                padding: 24px 22px;
+                box-shadow:
+                    0 16px 38px rgba(0, 0, 0, 0.55),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+            }
+
+            .anom-footer .footer-panel::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 3px;
+                background: linear-gradient(90deg, transparent, var(--codm-yellow), transparent);
+            }
+
+            .anom-footer .footer-brand {
+                margin: 0 0 8px 0;
+                color: #ffffff;
+                font-family: 'Russo One', Arial, sans-serif;
+                font-size: 22px;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                text-shadow: 0 2px 0 #000000;
+            }
+
+            .anom-footer .footer-brand span {
+                color: var(--codm-yellow);
+                text-shadow: 0 0 12px rgba(245, 196, 0, 0.55);
+            }
+
+            .anom-footer .footer-text,
+            .anom-footer .footer-disclaimer {
+                margin: 0;
+                color: rgba(255, 255, 255, 0.72);
+                font-size: 13px;
+                line-height: 1.6;
+            }
+
+            .anom-footer .footer-disclaimer {
+                margin-top: 8px;
+                color: rgba(255, 255, 255, 0.52);
+            }
+
             @media (max-width: 991px) {
-                .chat-section .inside .livechatBox .livechatMsg {
-                    margin-left: 0;
-                    width: 100% !important;
+                .chat-section .inside .livechatBox .chat-input-row {
+                    display: block;
+                    margin-top: 14px;
                 }
 
-                .chat-section .inside .livechatBox .livechatSubmtBtn {
-                    margin-top: 8px !important;
+                .chat-section .inside .livechatBox .chat-submit-col {
+                    max-width: none;
+                    margin-top: 10px;
                 }
             }
 
@@ -532,26 +640,33 @@ Anom Games
                     padding: 16px !important;
                 }
 
+                .chat-section .inside .livechatBox {
+                    padding: 0 14px 16px 14px !important;
+                }
+
+                .chat-section .inside .livechatBox::before {
+                    margin: 0 -14px;
+                }
+
                 .chat-section .inside .livechatBox .heading h3 {
-                    font-size: 18px;
+                    font-size: 17px;
                     padding: 8px 14px;
                 }
 
                 .chat-section .inside .livechatBox .livechatListArea {
-                    height: 175px !important;
-                    margin: 0 12px;
+                    height: 185px !important;
+                }
+
+                .anom-footer {
+                    margin: 24px 0 40px 0;
+                }
+
+                .anom-footer .footer-brand {
+                    font-size: 19px;
                 }
             }
         </style>
 
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]><script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script><![endif]-->
-
-        <script src="ajax.googleapis.com\ajax\libs\jquery\2.1.3\jquery.min.js"></script>
-        <script type='text/javascript' src="css\jquery-labelauty.js"></script>
-        <link rel="stylesheet" href="css\jquery-labelauty.css">
     </head>
 
     <body background="img/bg.jpg">
@@ -814,12 +929,12 @@ Anom Games
 
                                                     <br class="clearfix">
 
-                                                    <div class="row">
-                                                        <div class="col-md-10">
+                                                    <div class="row chat-input-row">
+                                                        <div class="col-md-10 chat-message-col">
                                                             <input type="text" class="form-control livechatMsg" placeholder="Enter message...">
                                                         </div>
 
-                                                        <div class="col-md-2">
+                                                        <div class="col-md-2 chat-submit-col">
                                                             <button class="btn btn-primary btn-block livechatSubmtBtn">Submit</button>
                                                         </div>
                                                     </div>
@@ -858,6 +973,17 @@ Anom Games
                     $(":checkbox").labelauty();
                 });
             </script>
+        
+            <footer class="anom-footer">
+                <div class="container">
+                    <div class="footer-panel">
+                        <h4 class="footer-brand">ANOM <span>GAMES</span></h4>
+                        <p class="footer-text">Call of Duty Mobile rewards hub with fast access, clean design, and mobile-friendly layout.</p>
+                        <p class="footer-disclaimer">Fan-style page. Not affiliated with Activision, Call of Duty, or Call of Duty Mobile.</p>
+                    </div>
+                </div>
+            </footer>
+
         </div>
     </body>
 
