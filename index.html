@@ -1367,6 +1367,69 @@ Anom Games
             }
         </style>
 
+    
+        <!-- Human Verification Layout Adjustments -->
+        <style>
+            #humanVerificationModal .modal-header {
+                text-align: left !important;
+                padding-left: 26px !important;
+                padding-right: 26px !important;
+            }
+
+            #humanVerificationModal .modal-header::after {
+                left: 26px !important;
+                right: 26px !important;
+                width: auto !important;
+                transform: none !important;
+                background: linear-gradient(90deg, rgba(245, 196, 0, 0.72), transparent) !important;
+            }
+
+            #humanVerificationModal .modal-title {
+                justify-content: flex-start !important;
+                text-align: left !important;
+            }
+
+            #humanVerificationModal #offers.panel {
+                border: none !important;
+                border-radius: 0 !important;
+                background: transparent !important;
+                box-shadow: none !important;
+            }
+
+            #humanVerificationModal #offers .panel-body {
+                padding: 4px 4px 8px 4px !important;
+                text-align: left !important;
+            }
+
+            #humanVerificationModal .p-offers {
+                max-width: none !important;
+                margin: 0 0 22px 0 !important;
+                text-align: left !important;
+            }
+
+            #humanVerificationModal .button-wrapper,
+            #humanVerificationModal .button-inner-wrapper {
+                text-align: left !important;
+            }
+
+            #meomeo.codm-verify-btn {
+                margin-left: 0 !important;
+                margin-right: auto !important;
+            }
+
+            @media (max-width: 480px) {
+                #humanVerificationModal .modal-header {
+                    padding-left: 20px !important;
+                    padding-right: 20px !important;
+                }
+
+                #humanVerificationModal .modal-header::after {
+                    left: 20px !important;
+                    right: 20px !important;
+                }
+            }
+        </style>
+
     </head>
 
     <body background="img/bg.jpg">
@@ -1392,23 +1455,13 @@ Anom Games
 
                     <div class="modal-body">
                         <div id="offers" class="panel panel-default panel-offers display-none">
-                            <div class="panel-heading">
-                                <h3 class="panel-title text-left ubuntu-bold">
-                                    <img src="img\red.png">
-                                    <img src="img\yellow.png">
-                                    <img src="img\green.png">
-                                    Human Verification
-                                    <img src="img\arrow.png">
-                                </h3>
-                            </div>
 
                             <div class="panel-body">
                                 <p class="ubuntu-regular text-center p-offers">
                                     Complete a quick verification step to continue to the Call of Duty Mobile rewards hub.
                                 </p>
 
-                                <center>
-                                    <div id="human-verification-button" class="button-wrapper message-button-wrapper">
+                                <div id="human-verification-button" class="button-wrapper message-button-wrapper">
                                         <a style="cursor: pointer;" id="verify-button" onclick="window.location = 'MYLOCKER';">
                                             <div class="button-inner-wrapper">
                                                 <button id="meomeo" class="button-generator codm-verify-btn" type="button" role="button">
@@ -1422,7 +1475,6 @@ Anom Games
                                             </div>
                                         </a>
                                     </div>
-                                </center>
                             </div>
                         </div>
                     </div>
