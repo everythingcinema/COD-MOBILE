@@ -37,7 +37,7 @@ body {
     background-image: linear-gradient(to right, rgba(248,80,50,0) 0%,#343744 50%,rgba(248,80,50,0) 100%);
 }
 .label-primary {
-    background-color: #83ca14 !important;
+    background-color: #f5c400 !important;
     font-size: 14px;
 }
 .opacity-5 {
