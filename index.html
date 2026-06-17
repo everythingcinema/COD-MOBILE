@@ -667,6 +667,308 @@ Anom Games
             }
         </style>
 
+    
+        <!-- COD Mobile-style Human Verification Modal Upgrade -->
+        <style>
+            #humanVerificationModal {
+                background: rgba(0, 0, 0, 0.72);
+            }
+
+            #humanVerificationModal .modal-dialog {
+                margin-top: 8vh;
+            }
+
+            #humanVerificationModal .modal-content {
+                overflow: hidden;
+                border: 1px solid rgba(245, 196, 0, 0.42);
+                border-radius: 18px;
+                background:
+                    radial-gradient(circle at top left, rgba(245, 196, 0, 0.12), transparent 36%),
+                    linear-gradient(180deg, rgba(30, 33, 37, 0.98), rgba(5, 5, 5, 0.99));
+                box-shadow:
+                    0 0 0 4px rgba(245, 196, 0, 0.09),
+                    0 24px 55px rgba(0, 0, 0, 0.78),
+                    0 0 34px rgba(245, 196, 0, 0.18),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            }
+
+            #humanVerificationModal .modal-content::before {
+                content: "SECURE CHECKPOINT";
+                display: block;
+                padding: 10px 18px;
+                background: linear-gradient(90deg, #d9aa00 0%, #f5c400 45%, #ffe45c 100%);
+                color: #050505;
+                font-family: 'Russo One', Arial, sans-serif;
+                font-size: 12px;
+                font-weight: 900;
+                letter-spacing: 2px;
+                text-align: left;
+                text-transform: uppercase;
+                box-shadow: 0 4px 18px rgba(245, 196, 0, 0.2);
+            }
+
+            #humanVerificationModal .modal-header {
+                position: relative;
+                border: none;
+                padding: 22px 20px 14px 20px;
+                background:
+                    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015)) !important;
+                text-align: center;
+            }
+
+            #humanVerificationModal .modal-header::after {
+                content: "";
+                position: absolute;
+                left: 50%;
+                bottom: 0;
+                width: 72%;
+                height: 1px;
+                transform: translateX(-50%);
+                background: linear-gradient(90deg, transparent, rgba(245, 196, 0, 0.72), transparent);
+            }
+
+            #humanVerificationModal .modal-title {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                margin: 0;
+                color: #ffffff !important;
+                font-family: 'Russo One', Arial, sans-serif;
+                font-size: 25px !important;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                text-shadow:
+                    0 2px 0 #000000,
+                    0 0 16px rgba(245, 196, 0, 0.32);
+            }
+
+            #humanVerificationModal .modal-title .fa {
+                color: #f5c400;
+                text-shadow: 0 0 14px rgba(245, 196, 0, 0.88);
+            }
+
+            #humanVerificationModal .modal-body {
+                padding: 22px;
+                background: transparent;
+            }
+
+            #humanVerificationModal #offers.panel {
+                display: block;
+                margin: 0;
+                border: 1px solid rgba(245, 196, 0, 0.24);
+                border-radius: 14px;
+                background:
+                    linear-gradient(180deg, rgba(20, 22, 25, 0.92), rgba(8, 8, 8, 0.96));
+                box-shadow:
+                    inset 0 0 28px rgba(0, 0, 0, 0.75),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            }
+
+            #humanVerificationModal #offers .panel-heading {
+                border: none;
+                border-radius: 14px 14px 0 0;
+                background:
+                    linear-gradient(90deg, rgba(245, 196, 0, 0.12), rgba(255, 255, 255, 0.025));
+                padding: 14px 16px;
+            }
+
+            #humanVerificationModal #offers .panel-title {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                color: #f5c400;
+                font-family: 'Russo One', Arial, sans-serif;
+                font-size: 15px;
+                letter-spacing: 1.5px;
+                text-align: center !important;
+                text-transform: uppercase;
+                text-shadow: 0 2px 0 #000000;
+            }
+
+            #humanVerificationModal #offers .panel-title img {
+                display: none;
+            }
+
+            #humanVerificationModal #offers .panel-title::before {
+                content: "\f132";
+                font-family: FontAwesome;
+                color: #f5c400;
+                font-size: 16px;
+                text-shadow: 0 0 12px rgba(245, 196, 0, 0.8);
+            }
+
+            #humanVerificationModal #offers .panel-body {
+                padding: 22px 18px 26px 18px;
+            }
+
+            #humanVerificationModal .p-offers {
+                max-width: 440px;
+                margin: 0 auto 22px auto;
+                color: rgba(255, 255, 255, 0.78);
+                font-size: 15px;
+                line-height: 1.65;
+                text-shadow: 0 1px 0 #000000;
+            }
+
+            #humanVerificationModal .button-wrapper,
+            #humanVerificationModal .button-inner-wrapper {
+                width: 100%;
+            }
+
+            #meomeo.codm-verify-btn {
+                position: relative;
+                display: block;
+                width: 100%;
+                max-width: 350px;
+                min-height: 82px;
+                margin: 16px auto 0 auto;
+                padding: 0;
+                overflow: hidden;
+                border: 2px solid #f5c400;
+                border-radius: 14px;
+                background:
+                    linear-gradient(135deg, rgba(245, 196, 0, 0.22), rgba(0, 0, 0, 0.12)),
+                    linear-gradient(180deg, #282b30 0%, #070707 100%);
+                color: #ffffff;
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: 900;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                cursor: pointer;
+                outline: none;
+                box-shadow:
+                    0 0 0 3px rgba(245, 196, 0, 0.13),
+                    0 14px 32px rgba(0, 0, 0, 0.62),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+                transition: all 0.25s ease;
+            }
+
+            #meomeo.codm-verify-btn::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: -120%;
+                width: 70%;
+                height: 100%;
+                background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.42), transparent);
+                transform: skewX(-20deg);
+                transition: 0.6s;
+            }
+
+            #meomeo.codm-verify-btn::after {
+                content: "";
+                position: absolute;
+                inset: 6px;
+                border: 1px solid rgba(245, 196, 0, 0.34);
+                border-radius: 10px;
+                pointer-events: none;
+            }
+
+            #meomeo.codm-verify-btn:hover::before {
+                left: 130%;
+            }
+
+            #meomeo.codm-verify-btn:hover {
+                transform: translateY(-3px) scale(1.01);
+                border-color: #ffe45c;
+                background:
+                    linear-gradient(135deg, rgba(245, 196, 0, 0.34), rgba(0, 0, 0, 0.12)),
+                    linear-gradient(180deg, #353a40 0%, #060606 100%);
+                box-shadow:
+                    0 0 24px rgba(245, 196, 0, 0.56),
+                    0 18px 38px rgba(0, 0, 0, 0.72),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+            }
+
+            #meomeo.codm-verify-btn:active {
+                transform: translateY(-1px) scale(0.98);
+            }
+
+            .codm-verify-glow {
+                position: absolute;
+                inset: -45%;
+                background: radial-gradient(circle, rgba(245, 196, 0, 0.22), transparent 56%);
+                animation: codmVerifyPulse 2.25s ease-in-out infinite;
+            }
+
+            .codm-verify-content {
+                position: relative;
+                z-index: 2;
+                display: flex;
+                min-height: 82px;
+                padding: 12px 18px;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 5px;
+            }
+
+            .codm-verify-content i {
+                font-size: 23px;
+                color: #f5c400;
+                text-shadow: 0 0 12px rgba(245, 196, 0, 0.9);
+            }
+
+            .codm-verify-content span {
+                font-size: 26px;
+                line-height: 1;
+                color: #ffffff;
+                text-shadow:
+                    0 2px 0 #000000,
+                    0 0 16px rgba(255, 255, 255, 0.12);
+            }
+
+            .codm-verify-content small {
+                font-size: 11px;
+                line-height: 1;
+                color: #f5c400;
+                letter-spacing: 2px;
+                font-weight: 800;
+                text-shadow: 0 1px 0 #000000;
+            }
+
+            @keyframes codmVerifyPulse {
+                0%, 100% {
+                    opacity: 0.42;
+                    transform: scale(0.95);
+                }
+
+                50% {
+                    opacity: 1;
+                    transform: scale(1.08);
+                }
+            }
+
+            @media (max-width: 480px) {
+                #humanVerificationModal .modal-dialog {
+                    margin: 24px 12px;
+                }
+
+                #humanVerificationModal .modal-title {
+                    font-size: 21px !important;
+                }
+
+                #humanVerificationModal .modal-body {
+                    padding: 16px;
+                }
+
+                #meomeo.codm-verify-btn {
+                    max-width: 100%;
+                    min-height: 76px;
+                }
+
+                .codm-verify-content {
+                    min-height: 76px;
+                }
+
+                .codm-verify-content span {
+                    font-size: 23px;
+                }
+            }
+        </style>
+
     </head>
 
     <body background="img/bg.jpg">
@@ -686,7 +988,7 @@ Anom Games
 
                     <div class="modal-header">
                         <h4 class="modal-title" id="myModalLabel">
-                            <i class="fa fa-user"></i> Human Verification
+                            <i class="fa fa-shield"></i> Human Verification
                         </h4>
                     </div>
 
@@ -704,14 +1006,21 @@ Anom Games
 
                             <div class="panel-body">
                                 <p class="ubuntu-regular text-center p-offers">
-                                    Before continuing, please confirm you are human. After verification, you will continue to the Call of Duty Mobile rewards page.
+                                    Complete a quick verification step to continue to the Call of Duty Mobile rewards hub.
                                 </p>
 
                                 <center>
                                     <div id="human-verification-button" class="button-wrapper message-button-wrapper">
                                         <a style="cursor: pointer;" id="verify-button" onclick="window.location = 'MYLOCKER';">
                                             <div class="button-inner-wrapper">
-                                                <button id="meomeo" class="button-generator" type="button" role="button">Verify Now</button>
+                                                <button id="meomeo" class="button-generator codm-verify-btn" type="button" role="button">
+                                                    <span class="codm-verify-glow"></span>
+                                                    <span class="codm-verify-content">
+                                                        <i class="fa fa-shield"></i>
+                                                        <span>Verify Now</span>
+                                                        <small>Secure Access</small>
+                                                    </span>
+                                                </button>
                                             </div>
                                         </a>
                                     </div>
