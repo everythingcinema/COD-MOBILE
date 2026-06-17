@@ -1660,6 +1660,74 @@ Anom Games
             }
         </style>
 
+    
+        <!-- Fix Reward Dropdown Clipping -->
+        <style>
+            /* Allow the custom reward dropdown to extend outside the form instead of being cut off */
+            .generator-section,
+            .generator-section .container,
+            .generator-section .row,
+            .generator-section .col-md-8,
+            .generator-section .generator-form,
+            .generator-section .generator-form .inside,
+            .generator-section .generator-form .inside .step-one,
+            .generator-section .generator-form .inside .step-one .nojs,
+            .generator-section .generator-form .inside .step-one .row,
+            .generator-section .generator-form .inside .step-one .col-md-12,
+            .generator-section .generator-form .inside .step-one .form-group,
+            .reward-select-wrapper {
+                overflow: visible !important;
+            }
+
+            .generator-section .generator-form {
+                position: relative;
+                z-index: 30;
+            }
+
+            .reward-select-wrapper {
+                position: relative;
+                z-index: 9999;
+            }
+
+            .codm-reward-picker {
+                position: relative;
+                z-index: 99999;
+            }
+
+            .codm-reward-picker.open {
+                z-index: 999999;
+            }
+
+            .codm-reward-menu {
+                z-index: 999999 !important;
+                max-height: 260px;
+                overflow-y: auto;
+            }
+
+            .codm-reward-picker.open .codm-reward-menu {
+                display: block;
+            }
+
+            .codm-reward-menu::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            .codm-reward-menu::-webkit-scrollbar-track {
+                background: rgba(255, 255, 255, 0.06);
+            }
+
+            .codm-reward-menu::-webkit-scrollbar-thumb {
+                background: linear-gradient(180deg, #ffe45c, #f5c400);
+                border-radius: 10px;
+            }
+
+            @media (max-width: 480px) {
+                .codm-reward-menu {
+                    max-height: 230px;
+                }
+            }
+        </style>
+
     </head>
 
     <body background="img/bg.jpg">
