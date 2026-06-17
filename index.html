@@ -1660,52 +1660,32 @@ Anom Games
             }
         </style>
 
-    
-        <!-- Fix Reward Dropdown Clipping -->
+        <!-- Safe Reward Dropdown Fix Without Page Jumping -->
         <style>
-            /* Allow the custom reward dropdown to extend outside the form instead of being cut off */
-            .generator-section,
-            .generator-section .container,
-            .generator-section .row,
-            .generator-section .col-md-8,
-            .generator-section .generator-form,
-            .generator-section .generator-form .inside,
-            .generator-section .generator-form .inside .step-one,
-            .generator-section .generator-form .inside .step-one .nojs,
-            .generator-section .generator-form .inside .step-one .row,
-            .generator-section .generator-form .inside .step-one .col-md-12,
-            .generator-section .generator-form .inside .step-one .form-group,
-            .reward-select-wrapper {
-                overflow: visible !important;
-            }
-
             .generator-section .generator-form {
                 position: relative;
-                z-index: 30;
+                overflow: hidden !important;
             }
 
-            .reward-select-wrapper {
-                position: relative;
-                z-index: 9999;
+            .generator-section .generator-form.reward-dropdown-open {
+                overflow: visible !important;
+                padding-bottom: 230px !important;
             }
 
+            .reward-select-wrapper,
             .codm-reward-picker {
                 position: relative;
-                z-index: 99999;
+                z-index: 100;
             }
 
             .codm-reward-picker.open {
-                z-index: 999999;
+                z-index: 9999;
             }
 
             .codm-reward-menu {
-                z-index: 999999 !important;
-                max-height: 260px;
+                z-index: 99999 !important;
+                max-height: 230px;
                 overflow-y: auto;
-            }
-
-            .codm-reward-picker.open .codm-reward-menu {
-                display: block;
             }
 
             .codm-reward-menu::-webkit-scrollbar {
@@ -1722,9 +1702,46 @@ Anom Games
             }
 
             @media (max-width: 480px) {
-                .codm-reward-menu {
-                    max-height: 230px;
+                .generator-section .generator-form.reward-dropdown-open {
+                    padding-bottom: 210px !important;
                 }
+
+                .codm-reward-menu {
+                    max-height: 210px;
+                }
+            }
+        </style>
+
+
+
+        <!-- Button Stability And No Page Jump Fix -->
+        <style>
+            #enterNowBtn,
+            #enterNowBtn *,
+            #verify-button,
+            #verify-button *,
+            .codm-enter-btn,
+            .codm-enter-btn *,
+            .codm-chat-submit-btn,
+            .codm-chat-submit-btn * {
+                text-decoration: none !important;
+            }
+
+            #enterNowBtn,
+            .generate-btn,
+            .livechatSubmtBtn,
+            #meomeo {
+                will-change: transform;
+                backface-visibility: hidden;
+                -webkit-backface-visibility: hidden;
+            }
+
+            html {
+                scroll-behavior: auto !important;
+            }
+
+            body {
+                overflow-anchor: none;
             }
         </style>
 
@@ -2092,53 +2109,7 @@ Anom Games
                     updateRewardIcon();
                 });
             </script>
-
-
-
-            <script type="text/javascript">
-                $(document).ready(function() {
-                    $(".codm-reward-picker").each(function() {
-                        var picker = $(this);
-                        var select = $(picker.data("target"));
-                        var current = picker.find(".codm-reward-current");
-                        var currentIcon = picker.find(".codm-reward-current .codm-reward-icon");
-                        var currentTitle = picker.find(".codm-reward-title");
-
-                        current.on("click", function(e) {
-                            e.preventDefault();
-                            $(".codm-reward-picker").not(picker).removeClass("open");
-                            picker.toggleClass("open");
-                        });
-
-                        picker.find(".codm-reward-item").on("click", function(e) {
-                            e.preventDefault();
-
-                            var item = $(this);
-                            var value = item.data("value");
-                            var icon = item.data("icon");
-                            var title = item.find("span").text();
-
-                            picker.find(".codm-reward-item").removeClass("active");
-                            item.addClass("active");
-
-                            currentIcon.attr("src", icon);
-                            currentTitle.text(title);
-
-                            select.val(value).trigger("change");
-                            picker.removeClass("open");
-                        });
-                    });
-
-                    $(document).on("click", function(e) {
-                        if (!$(e.target).closest(".codm-reward-picker").length) {
-                            $(".codm-reward-picker").removeClass("open");
-                        }
-                    });
-                });
-            </script>
-
-
-            <script type='text/javascript'>
+<script type='text/javascript'>
                 $(document).ready(function() {
                     $(":checkbox").labelauty();
                 });
@@ -2169,6 +2140,91 @@ Anom Games
             </footer>
 
         </div>
+    
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    function closeRewardPickers() {
+                        $(".codm-reward-picker").removeClass("open");
+                        $(".generator-section .generator-form").removeClass("reward-dropdown-open");
+                    }
+
+                    $(".codm-reward-picker").each(function() {
+                        var picker = $(this);
+                        var select = $(picker.data("target"));
+                        var current = picker.find(".codm-reward-current");
+                        var currentIcon = picker.find(".codm-reward-current .codm-reward-icon");
+                        var currentTitle = picker.find(".codm-reward-title");
+                        var formBox = picker.closest(".generator-form");
+
+                        current.on("click", function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+
+                            var willOpen = !picker.hasClass("open");
+                            closeRewardPickers();
+
+                            if (willOpen) {
+                                picker.addClass("open");
+                                formBox.addClass("reward-dropdown-open");
+                            }
+                        });
+
+                        picker.find(".codm-reward-item").on("click", function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+
+                            var item = $(this);
+                            var value = item.data("value");
+                            var icon = item.data("icon");
+                            var title = item.find("span").text();
+
+                            picker.find(".codm-reward-item").removeClass("active");
+                            item.addClass("active");
+
+                            currentIcon.attr("src", icon);
+                            currentTitle.text(title);
+
+                            select.val(value).trigger("change");
+                            closeRewardPickers();
+                        });
+                    });
+
+                    $(document).on("click", function(e) {
+                        if (!$(e.target).closest(".codm-reward-picker").length) {
+                            closeRewardPickers();
+                        }
+                    });
+
+                    $(document).on("keydown", function(e) {
+                        if (e.key === "Escape") {
+                            closeRewardPickers();
+                        }
+                    });
+                });
+            </script>
+
+    
+            <!-- Prevent Enter Button Page Jump -->
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $("#enterNowBtn").on("click", function() {
+                        var currentTop = window.pageYOffset || document.documentElement.scrollTop || 0;
+
+                        window.setTimeout(function() {
+                            if ((window.pageYOffset || document.documentElement.scrollTop || 0) > currentTop + 80) {
+                                window.scrollTo(0, currentTop);
+                            }
+                        }, 50);
+
+                        window.setTimeout(function() {
+                            if ((window.pageYOffset || document.documentElement.scrollTop || 0) > currentTop + 80) {
+                                window.scrollTo(0, currentTop);
+                            }
+                        }, 250);
+                    });
+                });
+            </script>
+
     </body>
 
 <!-- Created by Anom Games
