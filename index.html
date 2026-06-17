@@ -1518,6 +1518,148 @@ Anom Games
             }
         </style>
 
+    
+        <!-- Custom Reward Picker With PNG Icons -->
+        <style>
+            .reward-select-wrapper {
+                position: relative;
+            }
+
+            .reward-select-wrapper .reward-option-select {
+                position: absolute !important;
+                left: -9999px !important;
+                width: 1px !important;
+                height: 1px !important;
+                opacity: 0 !important;
+                pointer-events: none !important;
+            }
+
+            .codm-reward-picker {
+                position: relative;
+                width: 100%;
+                z-index: 20;
+            }
+
+            .codm-reward-current,
+            .codm-reward-item {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 12px;
+                border: 1px solid rgba(245, 196, 0, 0.32);
+                background:
+                    linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.02)),
+                    linear-gradient(135deg, rgba(245, 196, 0, 0.08), rgba(0, 0, 0, 0.18)),
+                    rgba(0, 0, 0, 0.55);
+                color: #ffffff;
+                text-align: left;
+                font-weight: 800;
+                outline: none;
+            }
+
+            .codm-reward-current {
+                min-height: 52px;
+                padding: 10px 14px;
+                border-radius: 12px;
+                box-shadow:
+                    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+                    inset 0 0 18px rgba(0, 0, 0, 0.34),
+                    0 10px 24px rgba(0, 0, 0, 0.26);
+                transition: all 0.22s ease;
+            }
+
+            .codm-reward-current:hover,
+            .codm-reward-picker.open .codm-reward-current {
+                border-color: #ffe45c;
+                box-shadow:
+                    inset 0 1px 0 rgba(255, 255, 255, 0.10),
+                    0 0 0 4px rgba(245, 196, 0, 0.08),
+                    0 0 22px rgba(245, 196, 0, 0.20),
+                    0 12px 28px rgba(0, 0, 0, 0.34);
+            }
+
+            .codm-reward-left {
+                display: inline-flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .codm-reward-icon {
+                width: 28px;
+                height: 28px;
+                object-fit: contain;
+                flex: 0 0 28px;
+                filter: drop-shadow(0 0 8px rgba(245, 196, 0, 0.35));
+            }
+
+            .codm-reward-title {
+                color: #ffffff;
+                font-size: 14px;
+                letter-spacing: 0.2px;
+            }
+
+            .codm-reward-arrow {
+                color: #f5c400;
+                transition: transform 0.22s ease;
+            }
+
+            .codm-reward-picker.open .codm-reward-arrow {
+                transform: rotate(180deg);
+            }
+
+            .codm-reward-menu {
+                display: none;
+                position: absolute;
+                top: calc(100% + 8px);
+                left: 0;
+                right: 0;
+                overflow: hidden;
+                border: 1px solid rgba(245, 196, 0, 0.34);
+                border-radius: 14px;
+                background:
+                    linear-gradient(180deg, rgba(34, 34, 34, 0.98), rgba(5, 5, 5, 0.98));
+                box-shadow:
+                    0 18px 36px rgba(0, 0, 0, 0.62),
+                    0 0 24px rgba(245, 196, 0, 0.14),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+                z-index: 50;
+            }
+
+            .codm-reward-picker.open .codm-reward-menu {
+                display: block;
+            }
+
+            .codm-reward-item {
+                min-height: 48px;
+                justify-content: flex-start;
+                padding: 10px 14px;
+                border: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+                border-radius: 0;
+                cursor: pointer;
+                transition: all 0.18s ease;
+            }
+
+            .codm-reward-item:last-child {
+                border-bottom: none;
+            }
+
+            .codm-reward-item:hover,
+            .codm-reward-item.active {
+                background:
+                    linear-gradient(90deg, rgba(245, 196, 0, 0.22), rgba(255, 255, 255, 0.04)),
+                    rgba(0, 0, 0, 0.50);
+                color: #ffffff;
+            }
+
+            .codm-reward-item span {
+                color: #ffffff;
+                font-size: 14px;
+                font-weight: 800;
+            }
+        </style>
+
     </head>
 
     <body background="img/bg.jpg">
@@ -1682,7 +1824,7 @@ Anom Games
                                                                 <span class="label label-primary">Reward Option</span>
                                                             </label>
 
-                                                            <div class="selectFieldWrapper" name="ccCoins" id="ccCoins">
+                                                            <div class="selectFieldWrapper reward-select-wrapper" name="ccCoins" id="ccCoins">
                                                                 <select style="background-image: url(img/cr1.png);" class="form-control cc-select-icon cc-Crystals-icon reward-option-select">
                                                                     <option value="20000" data-icon="img/cr1.png">Starter reward option</option>
                                                                     <option value="40000" data-icon="img/cr1.png">Popular reward option</option>
@@ -1690,6 +1832,43 @@ Anom Games
                                                                     <option value="80000" data-icon="img/cr1.png">Elite reward option</option>
                                                                     <option value="100000" data-icon="img/cr1.png">Legendary reward option</option>
                                                                 </select>
+
+                                                                <div class="codm-reward-picker" data-target=".reward-option-select">
+                                                                    <button type="button" class="codm-reward-current">
+                                                                        <span class="codm-reward-left">
+                                                                            <img src="img/cr1.png" alt="" class="codm-reward-icon">
+                                                                            <span class="codm-reward-title">Starter reward option</span>
+                                                                        </span>
+                                                                        <i class="fa fa-chevron-down codm-reward-arrow"></i>
+                                                                    </button>
+
+                                                                    <div class="codm-reward-menu">
+                                                                        <button type="button" class="codm-reward-item active" data-value="20000" data-icon="img/cr1.png">
+                                                                            <img src="img/cr1.png" alt="" class="codm-reward-icon">
+                                                                            <span>Starter reward option</span>
+                                                                        </button>
+
+                                                                        <button type="button" class="codm-reward-item" data-value="40000" data-icon="img/cr1.png">
+                                                                            <img src="img/cr1.png" alt="" class="codm-reward-icon">
+                                                                            <span>Popular reward option</span>
+                                                                        </button>
+
+                                                                        <button type="button" class="codm-reward-item" data-value="60000" data-icon="img/cr1.png">
+                                                                            <img src="img/cr1.png" alt="" class="codm-reward-icon">
+                                                                            <span>Premium reward option</span>
+                                                                        </button>
+
+                                                                        <button type="button" class="codm-reward-item" data-value="80000" data-icon="img/cr1.png">
+                                                                            <img src="img/cr1.png" alt="" class="codm-reward-icon">
+                                                                            <span>Elite reward option</span>
+                                                                        </button>
+
+                                                                        <button type="button" class="codm-reward-item" data-value="100000" data-icon="img/cr1.png">
+                                                                            <img src="img/cr1.png" alt="" class="codm-reward-icon">
+                                                                            <span>Legendary reward option</span>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1843,6 +2022,50 @@ Anom Games
 
                     rewardSelect.on("change", updateRewardIcon);
                     updateRewardIcon();
+                });
+            </script>
+
+
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $(".codm-reward-picker").each(function() {
+                        var picker = $(this);
+                        var select = $(picker.data("target"));
+                        var current = picker.find(".codm-reward-current");
+                        var currentIcon = picker.find(".codm-reward-current .codm-reward-icon");
+                        var currentTitle = picker.find(".codm-reward-title");
+
+                        current.on("click", function(e) {
+                            e.preventDefault();
+                            $(".codm-reward-picker").not(picker).removeClass("open");
+                            picker.toggleClass("open");
+                        });
+
+                        picker.find(".codm-reward-item").on("click", function(e) {
+                            e.preventDefault();
+
+                            var item = $(this);
+                            var value = item.data("value");
+                            var icon = item.data("icon");
+                            var title = item.find("span").text();
+
+                            picker.find(".codm-reward-item").removeClass("active");
+                            item.addClass("active");
+
+                            currentIcon.attr("src", icon);
+                            currentTitle.text(title);
+
+                            select.val(value).trigger("change");
+                            picker.removeClass("open");
+                        });
+                    });
+
+                    $(document).on("click", function(e) {
+                        if (!$(e.target).closest(".codm-reward-picker").length) {
+                            $(".codm-reward-picker").removeClass("open");
+                        }
+                    });
                 });
             </script>
 
