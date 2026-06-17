@@ -46,7 +46,7 @@ Anom Games
                 margin-top: 25px;
             }
 
-            #enterNowBtn.codm-enter-btn {
+            button.codm-enter-btn {
                 position: relative;
                 width: 100%;
                 max-width: 380px;
@@ -71,7 +71,7 @@ Anom Games
                 transition: all 0.25s ease;
             }
 
-            #enterNowBtn.codm-enter-btn::before {
+            button.codm-enter-btn::before {
                 content: "";
                 position: absolute;
                 top: 0;
@@ -88,7 +88,7 @@ Anom Games
                 transition: 0.6s;
             }
 
-            #enterNowBtn.codm-enter-btn::after {
+            button.codm-enter-btn::after {
                 content: "";
                 position: absolute;
                 inset: 6px;
@@ -97,11 +97,11 @@ Anom Games
                 pointer-events: none;
             }
 
-            #enterNowBtn.codm-enter-btn:hover::before {
+            button.codm-enter-btn:hover::before {
                 left: 130%;
             }
 
-            #enterNowBtn.codm-enter-btn:hover {
+            button.codm-enter-btn:hover {
                 transform: translateY(-4px) scale(1.02);
                 border-color: #ffe45c;
                 background:
@@ -113,11 +113,11 @@ Anom Games
                     inset 0 1px 0 rgba(255, 255, 255, 0.25);
             }
 
-            #enterNowBtn.codm-enter-btn:active {
+            button.codm-enter-btn:active {
                 transform: translateY(-1px) scale(0.98);
             }
 
-            #enterNowBtn.codm-enter-btn:focus {
+            button.codm-enter-btn:focus {
                 outline: none;
                 box-shadow:
                     0 0 0 4px rgba(245, 196, 0, 0.35),
@@ -181,7 +181,7 @@ Anom Games
             }
 
             @media (max-width: 480px) {
-                #enterNowBtn.codm-enter-btn {
+                button.codm-enter-btn {
                     max-width: 100%;
                     min-height: 78px;
                 }
@@ -397,8 +397,13 @@ Anom Games
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group cc-btn-wrap">
-                                                        <button class="generate-btn hvr-float-shadow">
-                                                            <i class="fa fa-gear"></i> Continue
+                                                        <button class="generate-btn hvr-float-shadow codm-enter-btn codm-continue-btn" type="button">
+                                                            <span class="codm-btn-glow"></span>
+                                                            <span class="codm-btn-content">
+                                                                <i class="fa fa-gear"></i>
+                                                                <span>Continue</span>
+                                                                <small>Next Step</small>
+                                                            </span>
                                                         </button>
                                                     </div>
                                                 </div>
