@@ -283,6 +283,268 @@ Anom Games
         </style>
 
 
+
+        <!-- COD Mobile-style Chat Room Upgrade -->
+        <style>
+            .chat-section .inside {
+                position: relative;
+                overflow: hidden;
+                border: 1px solid rgba(245, 196, 0, 0.32);
+                background:
+                    linear-gradient(135deg, rgba(245, 196, 0, 0.07), rgba(0, 0, 0, 0.08)),
+                    rgba(0, 0, 0, 0.72) !important;
+                box-shadow:
+                    0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+                    0 0 28px rgba(245, 196, 0, 0.16),
+                    0 18px 38px rgba(0, 0, 0, 0.65);
+            }
+
+            .chat-section .inside::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+                background:
+                    linear-gradient(90deg, rgba(245, 196, 0, 0.06) 1px, transparent 1px),
+                    linear-gradient(0deg, rgba(245, 196, 0, 0.035) 1px, transparent 1px);
+                background-size: 28px 28px;
+                opacity: 0.28;
+            }
+
+            .chat-section .inside .livechatBox {
+                position: relative;
+                z-index: 1;
+                overflow: hidden;
+                padding: 0 0 18px 0 !important;
+                border: 2px solid rgba(245, 196, 0, 0.52);
+                border-radius: 14px;
+                background:
+                    linear-gradient(180deg, rgba(36, 36, 36, 0.96), rgba(7, 7, 7, 0.98)) !important;
+                box-shadow:
+                    0 0 0 4px rgba(245, 196, 0, 0.08),
+                    0 16px 32px rgba(0, 0, 0, 0.65),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+            }
+
+            .chat-section .inside .livechatBox::before {
+                content: "SQUAD COMMS";
+                display: block;
+                padding: 9px 16px;
+                background:
+                    linear-gradient(90deg, #f5c400, #ffe45c, #f5c400);
+                color: #000000;
+                font-family: 'Russo One', Arial, sans-serif;
+                font-size: 12px;
+                font-weight: 900;
+                letter-spacing: 2px;
+                text-align: left;
+                text-transform: uppercase;
+                box-shadow: 0 2px 18px rgba(245, 196, 0, 0.28);
+            }
+
+            .chat-section .inside .livechatBox .heading {
+                position: relative;
+                padding: 18px 18px 0 18px;
+            }
+
+            .chat-section .inside .livechatBox .heading h3 {
+                display: inline-block;
+                margin: 0 0 15px 0 !important;
+                padding: 9px 18px;
+                border: 1px solid rgba(245, 196, 0, 0.35);
+                border-radius: 999px;
+                background: rgba(0, 0, 0, 0.42);
+                color: #ffffff;
+                font-family: 'Russo One', Arial, sans-serif;
+                font-size: 22px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                text-shadow:
+                    0 2px 0 #000000,
+                    0 0 14px rgba(245, 196, 0, 0.35);
+            }
+
+            .chat-section .inside .livechatBox .heading h3 .fa {
+                color: #f5c400;
+                text-shadow: 0 0 12px rgba(245, 196, 0, 0.85);
+            }
+
+            .chat-section .inside .livechatBox .livechatListArea {
+                height: 190px !important;
+                margin: 0 18px;
+                padding: 14px !important;
+                overflow-y: auto;
+                border: 1px solid rgba(245, 196, 0, 0.28) !important;
+                border-radius: 10px;
+                background:
+                    radial-gradient(circle at top left, rgba(245, 196, 0, 0.11), transparent 35%),
+                    linear-gradient(180deg, rgba(0, 0, 0, 0.78), rgba(12, 12, 12, 0.94));
+                box-shadow:
+                    inset 0 0 24px rgba(0, 0, 0, 0.85),
+                    0 0 18px rgba(245, 196, 0, 0.08);
+                scrollbar-color: #f5c400 #111111;
+                scrollbar-width: thin;
+            }
+
+            .chat-section .inside .livechatBox .livechatListArea::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            .chat-section .inside .livechatBox .livechatListArea::-webkit-scrollbar-track {
+                background: #111111;
+                border-radius: 10px;
+            }
+
+            .chat-section .inside .livechatBox .livechatListArea::-webkit-scrollbar-thumb {
+                background: #f5c400;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(245, 196, 0, 0.6);
+            }
+
+            .chat-section .inside .livechatBox .livechatListArea .chatList {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .chat-section .inside .livechatBox .livechatListArea .chatList li {
+                position: relative;
+                margin: 8px 0 !important;
+                padding: 9px 12px 9px 14px;
+                border-left: 3px solid #f5c400;
+                border-radius: 6px;
+                background:
+                    linear-gradient(90deg, rgba(245, 196, 0, 0.13), rgba(255, 255, 255, 0.035));
+                color: #e9e9e9;
+                font-size: 14px;
+                line-height: 1.35 !important;
+                text-shadow: 0 1px 0 #000000;
+                box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+            }
+
+            .chat-section .inside .livechatBox .livechatListArea .chatList li .name {
+                color: #f5c400;
+                font-weight: 900 !important;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                text-shadow: 0 0 10px rgba(245, 196, 0, 0.45);
+            }
+
+            .chat-section .inside .livechatBox .livechatMsg {
+                height: 46px;
+                margin-left: 18px;
+                width: calc(100% - 18px) !important;
+                padding: 11px 14px !important;
+                border: 1px solid rgba(245, 196, 0, 0.42);
+                border-radius: 8px;
+                background: rgba(0, 0, 0, 0.74);
+                color: #ffffff;
+                font-weight: 700;
+                outline: none;
+                box-shadow:
+                    inset 0 0 14px rgba(0, 0, 0, 0.85),
+                    0 0 0 rgba(245, 196, 0, 0);
+                transition: all 0.22s ease;
+            }
+
+            .chat-section .inside .livechatBox .livechatMsg::placeholder {
+                color: rgba(255, 255, 255, 0.55);
+            }
+
+            .chat-section .inside .livechatBox .livechatMsg:focus {
+                border-color: #ffe45c;
+                box-shadow:
+                    inset 0 0 14px rgba(0, 0, 0, 0.85),
+                    0 0 18px rgba(245, 196, 0, 0.36);
+            }
+
+            .chat-section .inside .livechatBox .livechatSubmtBtn,
+            .chat-section .inside .livechatBox .livechatNicknameBtn {
+                min-height: 46px;
+                border: 1px solid #f5c400 !important;
+                border-radius: 8px !important;
+                background:
+                    linear-gradient(135deg, rgba(245, 196, 0, 0.22), rgba(0, 0, 0, 0.10)),
+                    linear-gradient(180deg, #282828 0%, #070707 100%) !important;
+                color: #ffffff !important;
+                font-weight: 900;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                text-shadow: 0 2px 0 #000000;
+                box-shadow:
+                    0 0 0 2px rgba(245, 196, 0, 0.10),
+                    0 8px 20px rgba(0, 0, 0, 0.48),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+                transition: all 0.22s ease;
+            }
+
+            .chat-section .inside .livechatBox .livechatSubmtBtn:hover,
+            .chat-section .inside .livechatBox .livechatNicknameBtn:hover {
+                transform: translateY(-2px);
+                border-color: #ffe45c !important;
+                box-shadow:
+                    0 0 18px rgba(245, 196, 0, 0.55),
+                    0 12px 26px rgba(0, 0, 0, 0.62),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            }
+
+            .chat-section .inside .livechatBox .livechatNameBox .overlay {
+                background:
+                    radial-gradient(circle, rgba(245, 196, 0, 0.12), rgba(0, 0, 0, 0.82)) !important;
+                backdrop-filter: blur(2px);
+            }
+
+            .chat-section .inside .livechatBox .livechatNameBox .nameInputBox {
+                border: 1px solid rgba(245, 196, 0, 0.55);
+                border-radius: 12px !important;
+                background:
+                    linear-gradient(180deg, rgba(30, 30, 30, 0.98), rgba(5, 5, 5, 0.98)) !important;
+                box-shadow:
+                    0 0 22px rgba(245, 196, 0, 0.22),
+                    0 16px 32px rgba(0, 0, 0, 0.72);
+            }
+
+            .chat-section .inside .livechatBox .livechatNameBox .nameInputBox label {
+                color: #f5c400 !important;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .chat-section .inside .livechatBox .livechatNameBox .nameInputBox input {
+                border: 1px solid rgba(245, 196, 0, 0.42);
+                background: rgba(0, 0, 0, 0.72);
+                color: #ffffff;
+            }
+
+            @media (max-width: 991px) {
+                .chat-section .inside .livechatBox .livechatMsg {
+                    margin-left: 0;
+                    width: 100% !important;
+                }
+
+                .chat-section .inside .livechatBox .livechatSubmtBtn {
+                    margin-top: 8px !important;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .chat-section .inside {
+                    padding: 16px !important;
+                }
+
+                .chat-section .inside .livechatBox .heading h3 {
+                    font-size: 18px;
+                    padding: 8px 14px;
+                }
+
+                .chat-section .inside .livechatBox .livechatListArea {
+                    height: 175px !important;
+                    margin: 0 12px;
+                }
+            }
+        </style>
+
+
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]><script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script><![endif]-->
