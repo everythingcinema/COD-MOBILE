@@ -288,387 +288,7 @@ Anom Games
         <script src="ajax.googleapis.com\ajax\libs\jquery\2.1.3\jquery.min.js"></script>
         <script type='text/javascript' src="css\jquery-labelauty.js"></script>
         <link rel="stylesheet" href="css\jquery-labelauty.css">
-    
-        <!-- Professional COD Mobile-style Chat Room Upgrade -->
-        <style>
-            :root {
-                --codm-yellow: #f5c400;
-                --codm-yellow-soft: #ffe45c;
-                --codm-black: #070707;
-                --codm-panel: #111316;
-                --codm-panel-light: #1b1e22;
-                --codm-border: rgba(245, 196, 0, 0.38);
-                --codm-text: #f2f2f2;
-                --codm-muted: rgba(255, 255, 255, 0.62);
-            }
-
-            .chat-section {
-                margin-bottom: 0 !important;
-                padding-bottom: 0;
-            }
-
-            .chat-section .inside {
-                position: relative;
-                overflow: hidden;
-                border: 1px solid rgba(245, 196, 0, 0.22);
-                border-radius: 18px !important;
-                background:
-                    linear-gradient(145deg, rgba(245, 196, 0, 0.055), rgba(255, 255, 255, 0.018)),
-                    rgba(5, 5, 5, 0.78) !important;
-                box-shadow:
-                    0 16px 40px rgba(0, 0, 0, 0.58),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.06);
-            }
-
-            .chat-section .inside::before {
-                content: "";
-                position: absolute;
-                inset: 0;
-                pointer-events: none;
-                background:
-                    linear-gradient(90deg, rgba(245, 196, 0, 0.04) 1px, transparent 1px),
-                    linear-gradient(0deg, rgba(245, 196, 0, 0.025) 1px, transparent 1px);
-                background-size: 34px 34px;
-                opacity: 0.35;
-            }
-
-            .chat-section .inside .livechatBox {
-                position: relative;
-                z-index: 1;
-                overflow: hidden;
-                padding: 0 22px 22px 22px !important;
-                border: 1px solid var(--codm-border);
-                border-radius: 16px;
-                background:
-                    linear-gradient(180deg, rgba(27, 30, 34, 0.98), rgba(8, 8, 8, 0.99)) !important;
-                box-shadow:
-                    0 0 0 1px rgba(255, 255, 255, 0.045) inset,
-                    0 20px 36px rgba(0, 0, 0, 0.62),
-                    0 0 22px rgba(245, 196, 0, 0.10) !important;
-            }
-
-            .chat-section .inside .livechatBox::before {
-                content: "SQUAD COMMS";
-                display: block;
-                margin: 0 -22px 0 -22px;
-                padding: 10px 18px;
-                border-bottom: 1px solid rgba(245, 196, 0, 0.22);
-                background:
-                    linear-gradient(90deg, #d9aa00 0%, #f5c400 45%, #ffe45c 100%);
-                color: #050505;
-                font-family: 'Russo One', Arial, sans-serif;
-                font-size: 12px;
-                font-weight: 900;
-                letter-spacing: 2px;
-                text-align: left;
-                text-transform: uppercase;
-                box-shadow: 0 4px 18px rgba(245, 196, 0, 0.18);
-            }
-
-            .chat-section .inside .livechatBox .heading {
-                padding: 18px 0 0 0;
-            }
-
-            .chat-section .inside .livechatBox .heading h3 {
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                gap: 10px;
-                margin: 0 0 16px 0 !important;
-                padding: 10px 20px;
-                border: 1px solid rgba(245, 196, 0, 0.30);
-                border-radius: 999px;
-                background:
-                    linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.015)),
-                    rgba(0, 0, 0, 0.34);
-                color: var(--codm-text);
-                font-family: 'Russo One', Arial, sans-serif;
-                font-size: 21px;
-                letter-spacing: 1px;
-                text-transform: uppercase;
-                text-shadow: 0 2px 0 #000000;
-            }
-
-            .chat-section .inside .livechatBox .heading h3 .fa {
-                color: var(--codm-yellow);
-                text-shadow: 0 0 12px rgba(245, 196, 0, 0.78);
-            }
-
-            .chat-section .inside .livechatBox .livechatListArea {
-                height: 205px !important;
-                margin: 0;
-                padding: 14px !important;
-                overflow-y: auto;
-                border: 1px solid rgba(245, 196, 0, 0.24) !important;
-                border-radius: 12px;
-                background:
-                    radial-gradient(circle at top left, rgba(245, 196, 0, 0.09), transparent 34%),
-                    linear-gradient(180deg, rgba(0, 0, 0, 0.70), rgba(12, 13, 15, 0.96));
-                box-shadow:
-                    inset 0 0 24px rgba(0, 0, 0, 0.82),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.035);
-                scrollbar-color: var(--codm-yellow) #111111;
-                scrollbar-width: thin;
-            }
-
-            .chat-section .inside .livechatBox .livechatListArea::-webkit-scrollbar {
-                width: 8px;
-            }
-
-            .chat-section .inside .livechatBox .livechatListArea::-webkit-scrollbar-track {
-                background: #111111;
-                border-radius: 10px;
-            }
-
-            .chat-section .inside .livechatBox .livechatListArea::-webkit-scrollbar-thumb {
-                background: linear-gradient(180deg, var(--codm-yellow-soft), var(--codm-yellow));
-                border-radius: 10px;
-            }
-
-            .chat-section .inside .livechatBox .livechatListArea .chatList {
-                list-style: none;
-                margin: 0;
-                padding: 0;
-            }
-
-            .chat-section .inside .livechatBox .livechatListArea .chatList li {
-                position: relative;
-                margin: 8px 0 !important;
-                padding: 9px 12px 9px 14px;
-                border-left: 3px solid var(--codm-yellow);
-                border-radius: 8px;
-                background:
-                    linear-gradient(90deg, rgba(245, 196, 0, 0.12), rgba(255, 255, 255, 0.035));
-                color: var(--codm-text);
-                font-size: 14px;
-                line-height: 1.4 !important;
-                text-shadow: 0 1px 0 #000000;
-                box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.035);
-            }
-
-            .chat-section .inside .livechatBox .livechatListArea .chatList li .name {
-                color: var(--codm-yellow);
-                font-weight: 900 !important;
-                text-transform: uppercase;
-                letter-spacing: 0.45px;
-            }
-
-            .chat-section .inside .livechatBox .chat-input-row {
-                display: flex;
-                align-items: stretch;
-                gap: 14px;
-                margin: 16px 0 0 0;
-            }
-
-            .chat-section .inside .livechatBox .chat-message-col,
-            .chat-section .inside .livechatBox .chat-submit-col {
-                padding-left: 0 !important;
-                padding-right: 0 !important;
-            }
-
-            .chat-section .inside .livechatBox .chat-message-col {
-                flex: 1 1 auto;
-            }
-
-            .chat-section .inside .livechatBox .chat-submit-col {
-                flex: 0 0 150px;
-                max-width: 150px;
-            }
-
-            .chat-section .inside .livechatBox .livechatMsg {
-                width: 100% !important;
-                height: 48px;
-                margin: 0 !important;
-                padding: 12px 14px !important;
-                border: 1px solid rgba(245, 196, 0, 0.34);
-                border-radius: 10px;
-                background: rgba(0, 0, 0, 0.70);
-                color: #ffffff;
-                font-weight: 700;
-                outline: none;
-                box-shadow:
-                    inset 0 0 14px rgba(0, 0, 0, 0.82),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.04);
-                transition: all 0.22s ease;
-            }
-
-            .chat-section .inside .livechatBox .livechatMsg::placeholder {
-                color: var(--codm-muted);
-            }
-
-            .chat-section .inside .livechatBox .livechatMsg:focus {
-                border-color: var(--codm-yellow-soft);
-                box-shadow:
-                    inset 0 0 14px rgba(0, 0, 0, 0.82),
-                    0 0 16px rgba(245, 196, 0, 0.26);
-            }
-
-            .chat-section .inside .livechatBox .livechatSubmtBtn,
-            .chat-section .inside .livechatBox .livechatNicknameBtn {
-                width: 100%;
-                min-height: 48px;
-                border: 1px solid var(--codm-yellow) !important;
-                border-radius: 10px !important;
-                background:
-                    linear-gradient(135deg, rgba(245, 196, 0, 0.18), rgba(0, 0, 0, 0.12)),
-                    linear-gradient(180deg, #24272b 0%, #070707 100%) !important;
-                color: #ffffff !important;
-                font-weight: 900;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                text-shadow: 0 2px 0 #000000;
-                box-shadow:
-                    0 0 0 2px rgba(245, 196, 0, 0.08),
-                    0 8px 18px rgba(0, 0, 0, 0.44),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.12);
-                transition: all 0.22s ease;
-            }
-
-            .chat-section .inside .livechatBox .livechatSubmtBtn:hover,
-            .chat-section .inside .livechatBox .livechatNicknameBtn:hover {
-                transform: translateY(-2px);
-                border-color: var(--codm-yellow-soft) !important;
-                background:
-                    linear-gradient(135deg, rgba(245, 196, 0, 0.28), rgba(0, 0, 0, 0.10)),
-                    linear-gradient(180deg, #30343a 0%, #080808 100%) !important;
-                box-shadow:
-                    0 0 18px rgba(245, 196, 0, 0.42),
-                    0 12px 24px rgba(0, 0, 0, 0.56),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.18);
-            }
-
-            .chat-section .inside .livechatBox .livechatNameBox .overlay {
-                background:
-                    radial-gradient(circle, rgba(245, 196, 0, 0.10), rgba(0, 0, 0, 0.84)) !important;
-                backdrop-filter: blur(2px);
-            }
-
-            .chat-section .inside .livechatBox .livechatNameBox .nameInputBox {
-                border: 1px solid rgba(245, 196, 0, 0.48);
-                border-radius: 12px !important;
-                background:
-                    linear-gradient(180deg, rgba(30, 32, 35, 0.98), rgba(5, 5, 5, 0.98)) !important;
-                box-shadow:
-                    0 0 22px rgba(245, 196, 0, 0.18),
-                    0 16px 32px rgba(0, 0, 0, 0.72);
-            }
-
-            .chat-section .inside .livechatBox .livechatNameBox .nameInputBox label {
-                color: var(--codm-yellow) !important;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-            }
-
-            .chat-section .inside .livechatBox .livechatNameBox .nameInputBox input {
-                border: 1px solid rgba(245, 196, 0, 0.38);
-                background: rgba(0, 0, 0, 0.72);
-                color: #ffffff;
-            }
-
-            .anom-footer {
-                margin: 32px 0 50px 0;
-                padding: 0;
-            }
-
-            .anom-footer .footer-panel {
-                position: relative;
-                overflow: hidden;
-                border: 1px solid rgba(245, 196, 0, 0.24);
-                border-radius: 16px;
-                background:
-                    linear-gradient(145deg, rgba(245, 196, 0, 0.06), rgba(255, 255, 255, 0.018)),
-                    rgba(5, 5, 5, 0.76);
-                text-align: center;
-                padding: 24px 22px;
-                box-shadow:
-                    0 16px 38px rgba(0, 0, 0, 0.55),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.06);
-            }
-
-            .anom-footer .footer-panel::before {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 3px;
-                background: linear-gradient(90deg, transparent, var(--codm-yellow), transparent);
-            }
-
-            .anom-footer .footer-brand {
-                margin: 0 0 8px 0;
-                color: #ffffff;
-                font-family: 'Russo One', Arial, sans-serif;
-                font-size: 22px;
-                letter-spacing: 2px;
-                text-transform: uppercase;
-                text-shadow: 0 2px 0 #000000;
-            }
-
-            .anom-footer .footer-brand span {
-                color: var(--codm-yellow);
-                text-shadow: 0 0 12px rgba(245, 196, 0, 0.55);
-            }
-
-            .anom-footer .footer-text,
-            .anom-footer .footer-disclaimer {
-                margin: 0;
-                color: rgba(255, 255, 255, 0.72);
-                font-size: 13px;
-                line-height: 1.6;
-            }
-
-            .anom-footer .footer-disclaimer {
-                margin-top: 8px;
-                color: rgba(255, 255, 255, 0.52);
-            }
-
-            @media (max-width: 991px) {
-                .chat-section .inside .livechatBox .chat-input-row {
-                    display: block;
-                    margin-top: 14px;
-                }
-
-                .chat-section .inside .livechatBox .chat-submit-col {
-                    max-width: none;
-                    margin-top: 10px;
-                }
-            }
-
-            @media (max-width: 480px) {
-                .chat-section .inside {
-                    padding: 16px !important;
-                }
-
-                .chat-section .inside .livechatBox {
-                    padding: 0 14px 16px 14px !important;
-                }
-
-                .chat-section .inside .livechatBox::before {
-                    margin: 0 -14px;
-                }
-
-                .chat-section .inside .livechatBox .heading h3 {
-                    font-size: 17px;
-                    padding: 8px 14px;
-                }
-
-                .chat-section .inside .livechatBox .livechatListArea {
-                    height: 185px !important;
-                }
-
-                .anom-footer {
-                    margin: 24px 0 40px 0;
-                }
-
-                .anom-footer .footer-brand {
-                    font-size: 19px;
-                }
-            }
-        </style>
-
-    
-        <!-- COD Mobile-style Human Verification Modal Upgrade -->
+<!-- COD Mobile-style Human Verification Modal Upgrade -->
         <style>
             #humanVerificationModal {
                 background: rgba(0, 0, 0, 0.72);
@@ -969,6 +589,410 @@ Anom Games
             }
         </style>
 
+        <!-- COD Mobile Console-style Chat Room Upgrade -->
+        <style>
+            :root {
+                --codm-yellow: #f5c400;
+                --codm-yellow-soft: #ffe45c;
+                --codm-gold-deep: #b58a00;
+                --codm-white: #f7f7f7;
+                --codm-deep: #050505;
+                --codm-panel: rgba(18, 18, 18, 0.84);
+                --codm-glass: rgba(255, 255, 255, 0.06);
+                --codm-border: rgba(245, 196, 0, 0.34);
+                --codm-muted: rgba(255, 255, 255, 0.62);
+            }
+
+            .chat-section {
+                margin-bottom: 0 !important;
+                padding: 34px 0 0 0 !important;
+            }
+
+            .chat-section .inside {
+                position: relative;
+                overflow: hidden;
+                padding: 30px !important;
+                border: 1px solid rgba(245, 196, 0, 0.24);
+                border-radius: 28px !important;
+                background:
+                    radial-gradient(circle at 18% 0%, rgba(245, 196, 0, 0.20), transparent 32%),
+                    radial-gradient(circle at 82% 18%, rgba(255, 228, 92, 0.10), transparent 34%),
+                    linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.018)),
+                    rgba(3, 3, 3, 0.82) !important;
+                backdrop-filter: blur(14px);
+                box-shadow:
+                    0 28px 70px rgba(0, 0, 0, 0.65),
+                    0 0 36px rgba(245, 196, 0, 0.14),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.10);
+            }
+
+            .chat-section .inside::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+                background:
+                    linear-gradient(115deg, transparent 0%, rgba(245, 196, 0, 0.07) 42%, transparent 64%),
+                    linear-gradient(90deg, rgba(245, 196, 0, 0.045) 1px, transparent 1px),
+                    linear-gradient(0deg, rgba(245, 196, 0, 0.028) 1px, transparent 1px);
+                background-size: 100% 100%, 42px 42px, 42px 42px;
+                opacity: 0.44;
+            }
+
+            .chat-section .inside::after {
+                content: "";
+                position: absolute;
+                left: 8%;
+                right: 8%;
+                bottom: 0;
+                height: 2px;
+                background: linear-gradient(90deg, transparent, var(--codm-yellow), var(--codm-yellow-soft), transparent);
+                box-shadow: 0 0 24px rgba(245, 196, 0, 0.72);
+            }
+
+            .chat-section .inside .livechatBox {
+                position: relative;
+                z-index: 1;
+                overflow: hidden;
+                padding: 0 24px 24px 24px !important;
+                border: 1px solid var(--codm-border);
+                border-radius: 24px;
+                background:
+                    linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.018)),
+                    linear-gradient(145deg, rgba(27, 27, 27, 0.96), rgba(4, 4, 4, 0.99)) !important;
+                box-shadow:
+                    0 24px 48px rgba(0, 0, 0, 0.58),
+                    0 0 42px rgba(245, 196, 0, 0.15),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+            }
+
+            .chat-section .inside .livechatBox::before {
+                content: "CALL OF DUTY MOBILE SQUAD CHANNEL";
+                display: flex;
+                align-items: center;
+                height: 44px;
+                margin: 0 -24px;
+                padding: 0 22px;
+                border-bottom: 1px solid rgba(245, 196, 0, 0.28);
+                background:
+                    linear-gradient(90deg, rgba(181, 138, 0, 0.74), rgba(245, 196, 0, 0.34), rgba(255, 255, 255, 0.045));
+                color: #ffffff;
+                font-family: 'Russo One', Arial, sans-serif;
+                font-size: 12px;
+                font-weight: 900;
+                letter-spacing: 2.2px;
+                text-align: left;
+                text-transform: uppercase;
+                text-shadow:
+                    0 2px 0 #000000,
+                    0 0 16px rgba(245, 196, 0, 0.56);
+                box-shadow: 0 5px 22px rgba(245, 196, 0, 0.14);
+            }
+
+            .chat-section .inside .livechatBox::after {
+                content: "";
+                position: absolute;
+                top: 14px;
+                right: 20px;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: var(--codm-yellow);
+                box-shadow:
+                    0 0 0 5px rgba(245, 196, 0, 0.12),
+                    0 0 16px rgba(245, 196, 0, 0.95);
+            }
+
+            .chat-section .inside .livechatBox .heading {
+                position: relative;
+                padding: 22px 0 4px 0;
+            }
+
+            .chat-section .inside .livechatBox .heading h3 {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 11px;
+                margin: 0 0 18px 0 !important;
+                padding: 11px 22px;
+                border: 1px solid rgba(245, 196, 0, 0.34);
+                border-radius: 999px;
+                background:
+                    linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.025)),
+                    rgba(0, 0, 0, 0.44);
+                color: var(--codm-white);
+                font-family: 'Russo One', Arial, sans-serif;
+                font-size: 22px;
+                letter-spacing: 1.2px;
+                text-transform: uppercase;
+                text-shadow:
+                    0 2px 0 #000000,
+                    0 0 20px rgba(245, 196, 0, 0.40);
+                box-shadow:
+                    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+                    0 0 24px rgba(245, 196, 0, 0.13);
+            }
+
+            .chat-section .inside .livechatBox .heading h3 .fa {
+                color: var(--codm-yellow);
+                text-shadow: 0 0 16px rgba(245, 196, 0, 0.92);
+            }
+
+            .chat-section .inside .livechatBox .heading::after {
+                content: "squad online  •  tactical comms active";
+                display: block;
+                margin: -7px 0 15px 0;
+                color: var(--codm-muted);
+                font-size: 12px;
+                letter-spacing: 1.4px;
+                text-transform: uppercase;
+            }
+
+            .chat-section .inside .livechatBox .livechatListArea {
+                height: 235px !important;
+                margin: 0;
+                padding: 16px !important;
+                overflow-y: auto;
+                border: 1px solid rgba(245, 196, 0, 0.26) !important;
+                border-radius: 20px;
+                background:
+                    radial-gradient(circle at top left, rgba(245, 196, 0, 0.13), transparent 32%),
+                    radial-gradient(circle at bottom right, rgba(255, 228, 92, 0.07), transparent 32%),
+                    rgba(2, 2, 2, 0.72);
+                box-shadow:
+                    inset 0 0 30px rgba(0, 0, 0, 0.76),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+                    0 0 24px rgba(245, 196, 0, 0.10);
+                scrollbar-color: var(--codm-yellow) rgba(255, 255, 255, 0.055);
+                scrollbar-width: thin;
+            }
+
+            .chat-section .inside .livechatBox .livechatListArea::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            .chat-section .inside .livechatBox .livechatListArea::-webkit-scrollbar-track {
+                background: rgba(255, 255, 255, 0.055);
+                border-radius: 10px;
+            }
+
+            .chat-section .inside .livechatBox .livechatListArea::-webkit-scrollbar-thumb {
+                background: linear-gradient(180deg, var(--codm-yellow-soft), var(--codm-yellow));
+                border-radius: 10px;
+                box-shadow: 0 0 16px rgba(245, 196, 0, 0.62);
+            }
+
+            .chat-section .inside .livechatBox .livechatListArea .chatList {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .chat-section .inside .livechatBox .livechatListArea .chatList li {
+                position: relative;
+                max-width: 86%;
+                margin: 10px 0 !important;
+                padding: 11px 14px 11px 16px;
+                border: 1px solid rgba(245, 196, 0, 0.18);
+                border-left: 3px solid var(--codm-yellow);
+                border-radius: 18px 18px 18px 6px;
+                background:
+                    linear-gradient(135deg, rgba(245, 196, 0, 0.16), rgba(255, 255, 255, 0.045));
+                color: var(--codm-white);
+                font-size: 14px;
+                line-height: 1.42 !important;
+                text-shadow: 0 1px 0 #000000;
+                box-shadow:
+                    0 8px 18px rgba(0, 0, 0, 0.26),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+            }
+
+            .chat-section .inside .livechatBox .livechatListArea .chatList li:nth-child(even) {
+                margin-left: auto !important;
+                border-left: 1px solid rgba(245, 196, 0, 0.18);
+                border-right: 3px solid var(--codm-gold-deep);
+                border-radius: 18px 18px 6px 18px;
+                background:
+                    linear-gradient(135deg, rgba(255, 255, 255, 0.055), rgba(245, 196, 0, 0.13));
+            }
+
+            .chat-section .inside .livechatBox .livechatListArea .chatList li .name {
+                color: var(--codm-yellow);
+                font-weight: 900 !important;
+                text-transform: uppercase;
+                letter-spacing: 0.55px;
+                text-shadow: 0 0 14px rgba(245, 196, 0, 0.50);
+            }
+
+            .chat-section .inside .livechatBox .chat-input-row {
+                display: flex;
+                align-items: stretch;
+                gap: 16px;
+                margin: 18px 0 0 0;
+            }
+
+            .chat-section .inside .livechatBox .chat-message-col,
+            .chat-section .inside .livechatBox .chat-submit-col {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+
+            .chat-section .inside .livechatBox .chat-message-col {
+                flex: 1 1 auto;
+            }
+
+            .chat-section .inside .livechatBox .chat-submit-col {
+                flex: 0 0 155px;
+                max-width: 155px;
+            }
+
+            .chat-section .inside .livechatBox .livechatMsg {
+                width: 100% !important;
+                height: 52px;
+                margin: 0 !important;
+                padding: 13px 17px !important;
+                border: 1px solid rgba(245, 196, 0, 0.32);
+                border-radius: 999px;
+                background:
+                    linear-gradient(180deg, rgba(255, 255, 255, 0.070), rgba(255, 255, 255, 0.020)),
+                    rgba(0, 0, 0, 0.46);
+                color: var(--codm-white);
+                font-weight: 700;
+                outline: none;
+                box-shadow:
+                    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+                    0 8px 22px rgba(0, 0, 0, 0.28);
+                transition: all 0.22s ease;
+            }
+
+            .chat-section .inside .livechatBox .livechatMsg::placeholder {
+                color: var(--codm-muted);
+            }
+
+            .chat-section .inside .livechatBox .livechatMsg:focus {
+                border-color: var(--codm-yellow-soft);
+                box-shadow:
+                    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+                    0 0 0 4px rgba(245, 196, 0, 0.08),
+                    0 0 22px rgba(245, 196, 0, 0.26);
+            }
+
+            .chat-section .inside .livechatBox .livechatSubmtBtn,
+            .chat-section .inside .livechatBox .livechatNicknameBtn {
+                width: 100%;
+                min-height: 52px;
+                border: 1px solid rgba(245, 196, 0, 0.58) !important;
+                border-radius: 999px !important;
+                background:
+                    linear-gradient(135deg, rgba(245, 196, 0, 0.25), rgba(0, 0, 0, 0.16)),
+                    linear-gradient(180deg, #2a2a2a 0%, #070707 100%) !important;
+                color: #ffffff !important;
+                font-weight: 900;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                text-shadow: 0 2px 0 rgba(0, 0, 0, 0.85);
+                box-shadow:
+                    0 0 0 3px rgba(245, 196, 0, 0.07),
+                    0 12px 26px rgba(0, 0, 0, 0.40),
+                    0 0 18px rgba(245, 196, 0, 0.16),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+                transition: all 0.22s ease;
+            }
+
+            .chat-section .inside .livechatBox .livechatSubmtBtn:hover,
+            .chat-section .inside .livechatBox .livechatNicknameBtn:hover {
+                transform: translateY(-2px);
+                border-color: rgba(255, 228, 92, 0.86) !important;
+                background:
+                    linear-gradient(135deg, rgba(245, 196, 0, 0.36), rgba(0, 0, 0, 0.12)),
+                    linear-gradient(180deg, #363636 0%, #080808 100%) !important;
+                box-shadow:
+                    0 0 0 4px rgba(245, 196, 0, 0.10),
+                    0 16px 30px rgba(0, 0, 0, 0.50),
+                    0 0 28px rgba(245, 196, 0, 0.36),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.20);
+            }
+
+            .chat-section .inside .livechatBox .livechatNameBox .overlay {
+                background:
+                    radial-gradient(circle, rgba(245, 196, 0, 0.16), rgba(0, 0, 0, 0.88)) !important;
+                backdrop-filter: blur(4px);
+            }
+
+            .chat-section .inside .livechatBox .livechatNameBox .nameInputBox {
+                border: 1px solid rgba(245, 196, 0, 0.42);
+                border-radius: 22px !important;
+                background:
+                    linear-gradient(180deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.020)),
+                    rgba(7, 7, 7, 0.96) !important;
+                box-shadow:
+                    0 0 36px rgba(245, 196, 0, 0.18),
+                    0 20px 40px rgba(0, 0, 0, 0.78),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.10);
+            }
+
+            .chat-section .inside .livechatBox .livechatNameBox .nameInputBox label {
+                color: var(--codm-yellow) !important;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .chat-section .inside .livechatBox .livechatNameBox .nameInputBox input {
+                border: 1px solid rgba(245, 196, 0, 0.36);
+                border-radius: 999px;
+                background: rgba(0, 0, 0, 0.48);
+                color: #ffffff;
+            }
+
+            @media (max-width: 991px) {
+                .chat-section .inside .livechatBox .chat-input-row {
+                    display: block;
+                    margin-top: 16px;
+                }
+
+                .chat-section .inside .livechatBox .chat-submit-col {
+                    max-width: none;
+                    margin-top: 11px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .chat-section .inside {
+                    padding: 18px !important;
+                    border-radius: 22px !important;
+                }
+
+                .chat-section .inside .livechatBox {
+                    padding: 0 15px 18px 15px !important;
+                    border-radius: 20px;
+                }
+
+                .chat-section .inside .livechatBox::before {
+                    margin: 0 -15px;
+                    font-size: 10px;
+                    letter-spacing: 1.5px;
+                }
+
+                .chat-section .inside .livechatBox .heading h3 {
+                    font-size: 18px;
+                    padding: 9px 15px;
+                }
+
+                .chat-section .inside .livechatBox .heading::after {
+                    font-size: 10px;
+                }
+
+                .chat-section .inside .livechatBox .livechatListArea {
+                    height: 210px !important;
+                    border-radius: 18px;
+                }
+
+                .chat-section .inside .livechatBox .livechatListArea .chatList li {
+                    max-width: 94%;
+                }
+            }
+        </style>
+
     </head>
 
     <body background="img/bg.jpg">
@@ -1223,7 +1247,7 @@ Anom Games
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="heading">
-                                                                <h3><i class="fa fa-comment"></i> Chat Room</h3>
+                                                                <h3><i class="fa fa-crosshairs"></i> Squad Chat</h3>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1240,7 +1264,7 @@ Anom Games
 
                                                     <div class="row chat-input-row">
                                                         <div class="col-md-10 chat-message-col">
-                                                            <input type="text" class="form-control livechatMsg" placeholder="Enter message...">
+                                                            <input type="text" class="form-control livechatMsg" placeholder="Message squad chat...">
                                                         </div>
 
                                                         <div class="col-md-2 chat-submit-col">
