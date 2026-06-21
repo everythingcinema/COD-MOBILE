@@ -474,6 +474,76 @@ Anom Games
             <script src="js\jquery.countdown.min.js"></script>
             <script src="js\magnific-popup.min.js"></script>
             <script src="js\main.js"></script>
+            ```html id="codm-animation-upgrade-js"
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("body").addClass("codm-anim-ready");
+
+        var rippleTargets = [
+            "button.codm-enter-btn",
+            "#meomeo.codm-verify-btn",
+            ".codm-chat-submit-btn",
+            ".codm-reward-current"
+        ].join(",");
+
+        $(document).on("click", rippleTargets, function(e) {
+            var button = $(this);
+
+            button.addClass("codm-ripple-host");
+
+            var offset = button.offset();
+            var size = Math.max(button.outerWidth(), button.outerHeight());
+            var x = e.pageX - offset.left - size / 2;
+            var y = e.pageY - offset.top - size / 2;
+
+            var ripple = $("<span class='codm-click-ripple'></span>");
+
+            ripple.css({
+                width: size,
+                height: size,
+                left: x,
+                top: y
+            });
+
+            button.find(".codm-click-ripple").remove();
+            button.append(ripple);
+
+            setTimeout(function() {
+                ripple.remove();
+            }, 700);
+        });
+
+        $(document).on("click", ".codm-reward-item", function() {
+            var currentButton = $(this).closest(".codm-reward-picker").find(".codm-reward-current");
+
+            currentButton.removeClass("codm-reward-selected");
+
+            setTimeout(function() {
+                currentButton.addClass("codm-reward-selected");
+            }, 20);
+
+            setTimeout(function() {
+                currentButton.removeClass("codm-reward-selected");
+            }, 520);
+        });
+
+        $("#humanVerificationModal").on("show.bs.modal", function() {
+            var modalContent = $(this).find(".modal-content");
+
+            modalContent.css("animation", "none");
+
+            setTimeout(function() {
+                modalContent.css("animation", "");
+            }, 20);
+        });
+
+        $(document).on("click", ".generate-btn.codm-continue-btn", function() {
+            $(".generator-section .generator-form").addClass("codm-processing-started");
+        });
+    });
+</script>
+
+
 <script type='text/javascript'>
                 $(document).ready(function() {
                     $(":checkbox").labelauty();
@@ -624,4 +694,4 @@ Anom Games
 
 -->
 </html>
-```
+
